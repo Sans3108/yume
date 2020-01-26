@@ -340,7 +340,3 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 bot.login(process.env.TOKEN);
 
 bot.on('error', console.error);
-
-//console.log(bot.commands.filter(c => !c.ownerOnly))
-//console.log(bot.commands)
-//console.log(bot.commands.filter(c => c.ownerOnly))
