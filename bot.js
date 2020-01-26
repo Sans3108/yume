@@ -7,6 +7,7 @@ app.get("/", (request, response) => {
 }); 
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
+  console.log("App was pinged"); //Testing something
 }, 80000);
 
 //A hella ot of variables goddamnit xd
