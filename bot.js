@@ -1,4 +1,4 @@
-//glitch thingy
+//glitch ping thingy
 const http = require('http');
 const express = require('express');
 const app = express();
@@ -8,7 +8,7 @@ app.get("/", (request, response) => {
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
   console.log("App was pinged"); //Testing something
-}, 80000);
+}, 120000);
 
 //A hella ot of variables goddamnit xd
 const Discord = require("discord.js");
