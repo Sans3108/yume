@@ -8,6 +8,7 @@ module.exports = {
     execute(message, args, bot, color) {
         let embed1 = new Discord.RichEmbed()
         .setColor(color)
+        .setTitle('Our permanent invite link!')
         .setDescription('https://discord.gg/b4fw9uw');
 
         message.channel.send(embed1);

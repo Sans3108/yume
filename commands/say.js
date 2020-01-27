@@ -24,7 +24,7 @@ module.exports = {
 
 		message.delete();
 
-		if (args[0] === 'embed') {
+		if (args[0] === 'embed' || args[0] === 'emb') {
 			let a = new Discord.RichEmbed()
 				.setDescription(args.slice(1).join(' '));
 
