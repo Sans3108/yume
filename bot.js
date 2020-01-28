@@ -1,4 +1,4 @@
-//glitch ping thingy
+//glitch ping thingy so the bot doesn't go offline
 const http = require('http');
 const express = require('express');
 const app = express();
