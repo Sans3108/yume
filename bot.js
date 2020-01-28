@@ -241,7 +241,7 @@ bot.on("message", message => {
 
     //-------
 
-    const args = message.content.slice(prefix.length).split(/ +/);
+    const args = message.content.slice(prefix.length).split(/ +/); //message.content.substring(prefix.length).split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     const command = bot.commands.get(commandName)
