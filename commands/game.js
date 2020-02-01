@@ -8,6 +8,7 @@ module.exports = {
         const emb1 = new Discord.RichEmbed()
         .setColor(color)
         .setTitle(`Click me to be redirected to the Bossfight mini-game.`)
+        .setDescription('Command is old and likely to be deleted soon.')
         .setURL('https://sans3108.github.io/');
 
         message.channel.send(emb1);

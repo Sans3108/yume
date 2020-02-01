@@ -7,6 +7,7 @@ module.exports = {
 	cooldown: 0.5,
 	args: true,
 	guildOnly: true,
+  staff: true,
 	execute(message, args, bot, color) {
 		const perms = ["MANAGE_MESSAGES"]
 		const perms2 = ["SEND_TTS_MESSAGES"]

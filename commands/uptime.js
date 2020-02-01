@@ -5,6 +5,7 @@ module.exports = {
   description: "¯\\_(ツ)_/¯",
   aliases: ["up-time"],
   cooldown: 3,
+  ownerOnly: true,
   execute(message, args, bot, color) {
     let totalSeconds = bot.uptime / 1000;
     let days = Math.floor(totalSeconds / 86400);

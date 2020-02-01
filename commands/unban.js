@@ -8,6 +8,7 @@ module.exports = {
     cooldown: 5,
     guildOnly: true,
     args: true,
+    staff: true,
     execute(message, args, bot, color) {
         const perms = ["BAN_MEMBERS"];
 

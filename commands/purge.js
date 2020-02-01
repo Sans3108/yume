@@ -8,7 +8,7 @@ module.exports = {
 	usage: '[number]',
 	cooldown: 3,
 	guildOnly: true,
-	//ownerOnly: true,
+	staff: true,
 	args: true,
 	execute(message, args, bot, color) {
 		const perms = ["MANAGE_MESSAGES"]

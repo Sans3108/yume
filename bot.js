@@ -7,7 +7,6 @@ app.get("/", (request, response) => {
 }); 
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-  console.log("App was pinged"); //Testing something
 }, 80000);
 
 //A hella ot of variables goddamnit xd
@@ -61,7 +60,7 @@ bot.on("ready", () => {
     //Bot rich presence
     bot.user.setPresence({
         game: {
-            name: `Yume || "` + prefix + `help"`,
+            name: `Yume || "` + prefix + `cmds"`,
             type: "LISTENING"
         }
     });
@@ -265,9 +264,9 @@ bot.on("message", message => {
         return message.channel.send(reply);
     }
 
-    if (command.ownerOnly && message.author.id !== ownerID) return message.channel.send(embed4)
+    if (command.ownerOnly && message.author.id !== ownerID) return message.channel.send(embed4);
 
-    if (command.wip) return message.channel.send(embed5)
+    if (command.wip) return message.channel.send(embed5);
 
     if (!cooldowns.has(command.name)) {
         cooldowns.set(command.name, new Discord.Collection());

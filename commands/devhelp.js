@@ -33,6 +33,7 @@ module.exports = {
 			const embed5 = new Discord.RichEmbed()
 			.setColor(color)
 			.setDescription(data, { split: true })
+      .setFooter(`Tip: use ${prefix}cmds to find different help sections.`);
 
 			return message.author.send(embed5)
 				.then(() => {

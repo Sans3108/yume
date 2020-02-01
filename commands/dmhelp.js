@@ -2,9 +2,9 @@ const Discord = require("discord.js");
 const { prefix } = require('../prefix.json');
 
 module.exports = {
-	name: 'help',
-	description: 'List all of my commands or info about a specific command.',
-	aliases: ['commands', 'cmds'],
+	name: 'dmhelp',
+	description: 'List all of my commands that can be used in DM\'s or info about a specific command.',
+	aliases: ['dmcommands', 'dmcmds', 'dm-help'],
 	usage: '[command name]',
 	cooldown: 5,
 	execute(message, args, bot, color) {
@@ -14,7 +14,7 @@ module.exports = {
 		//embeds
 		const embed1 = new Discord.RichEmbed()
 		.setColor(color)
-		.setDescription('I\'ve sent you a DM with all my commands!');
+		.setDescription('I\'ve sent you a DM with all my commands that can be used in DM\'s!');
 
 		const embed2 = new Discord.RichEmbed()
 		.setColor(color)
@@ -25,9 +25,9 @@ module.exports = {
 		.setDescription('That command does not exist... try again?');
 
 		if (!args.length) {
-			data.push('**Here\'s a list of all my commands:**\n_');
-			data.push(commands.filter(c => !c.ownerOnly && !c.staff).map(command => command.name).join('_ | _'));
-			data.push(`_\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
+			data.push('**Here\'s a list of all my commands that can be used in DM\'s:**\n_');
+			data.push(commands.filter(c => !c.ownerOnly && !c.staff && !c.guildOnly).map(command => command.name).join('_ | _'));
+			data.push(`_\nYou can send \`${prefix}dmhelp [command name]\` to get info on a specific command!`);
 
 			const embed5 = new Discord.RichEmbed()
 			.setColor(color)

@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const { prefix } = require("../config.json");
+const { prefix } = require("../prefix.json");
 
 module.exports = {
     name: 'bot-nick',
@@ -9,6 +9,7 @@ module.exports = {
     cooldown: 5,
     guildOnly: true,
     args: true,
+    staff: true,
     execute(message, args, bot, color) {
 
         const perms = ["MANAGE_NICKNAMES"];
@@ -50,7 +51,7 @@ module.exports = {
             //mod log
             let modch2 = message.guild.channels.find(ch => ch.name === 'reports');
             let modemb2 = new Discord.RichEmbed()
-                .setTitle(`New Mod Log: (${prefix}nick)`)
+                .setTitle(`New Mod Log: (${prefix}bot-nick)`)
                 .setDescription(`\`\`${message.author.tag}\`\` cleared my nickname.`);
             modch2.send(modemb2);
         } else {
@@ -61,7 +62,7 @@ module.exports = {
             //mod log
             let modch1 = message.guild.channels.find(ch => ch.name === 'reports');
             let modemb1 = new Discord.RichEmbed()
-                .setTitle(`New Mod Log: (${prefix}nick)`)
+                .setTitle(`New Mod Log: (${prefix}bot-nick)`)
                 .setDescription(`\`\`${message.author.tag}\`\` changed my nickname to \`\`${newNick}\`\``);
             modch1.send(modemb1);
         }

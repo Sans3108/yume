@@ -2,11 +2,12 @@ const Discord = require("discord.js");
 const { prefix } = require('../prefix.json');
 
 module.exports = {
-	name: 'help',
-	description: 'List all of my commands or info about a specific command.',
-	aliases: ['commands', 'cmds'],
+	name: 'staffhelp',
+	description: 'List all of my Staff commands or info about a specific command.',
+	aliases: ['staffcommands', 'staffcmds', 'staff-help'],
 	usage: '[command name]',
 	cooldown: 5,
+  staff: true,
 	execute(message, args, bot, color) {
 		const data = [];
 		const { commands } = message.client;
@@ -14,7 +15,7 @@ module.exports = {
 		//embeds
 		const embed1 = new Discord.RichEmbed()
 		.setColor(color)
-		.setDescription('I\'ve sent you a DM with all my commands!');
+		.setDescription('I\'ve sent you a DM with all my staff commands!');
 
 		const embed2 = new Discord.RichEmbed()
 		.setColor(color)
@@ -25,9 +26,9 @@ module.exports = {
 		.setDescription('That command does not exist... try again?');
 
 		if (!args.length) {
-			data.push('**Here\'s a list of all my commands:**\n_');
-			data.push(commands.filter(c => !c.ownerOnly && !c.staff).map(command => command.name).join('_ | _'));
-			data.push(`_\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
+			data.push('**Here\'s a list of all my staff commands:**\n_');
+			data.push(commands.filter(c => c.staff).map(command => command.name).join('_ | _'));
+			data.push(`_\nYou can send \`${prefix}staffhelp [command name]\` to get info on a specific command!`);
 
 			const embed5 = new Discord.RichEmbed()
 			.setColor(color)
