@@ -63,11 +63,11 @@ module.exports = {
 
         const embed7 = new Discord.RichEmbed()
             .setColor(color)
-            .setDescription('Cannot dm that user.');
+            .setDescription('Cannot dm that user. \n(Their DMs are disabled.)');
 
         const embed8 = new Discord.RichEmbed()
             .setColor(color)
-            .setDescription('Cannot find user to dm.');
+            .setDescription('Cannot find user to dm. \n(You used the wrong ID or the user with that ID doesn\'t exist.)');
 
         /*const embed10 = new Discord.RichEmbed()
             .setColor(color)
