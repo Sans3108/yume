@@ -13,7 +13,10 @@ module.exports = {
       const embed1Edit = new Discord.RichEmbed()
         .setColor(color)
         .setDescription(
-          `Pong! :ping_pong:\n\n:person_running: Response time: ${sent.createdTimestamp - message.createdTimestamp}ms\n:clock4: Ping: ${Math.floor(bot.ping)}ms`
+          `Pong! :ping_pong:\n\n:person_running: Ping: ${sent.createdTimestamp -
+            message.createdTimestamp}ms\n:clock4: Response Time: ${Math.floor(
+            bot.ping
+          )}ms`
         );
 
       sent.edit(embed1Edit);

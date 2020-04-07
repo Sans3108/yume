@@ -2,18 +2,21 @@
 const http = require("http");
 const express = require("express");
 const app = express();
+
 app.get("/", (request, response) => {
   response.sendStatus(200);
 });
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 80000);
+}, 50000);
 
 //A hella ot of variables goddamnit xd
 const Discord = require("discord.js");
 const { ownerID } = require("./config.json");
 const { prefix } = require("./prefix.json");
 const fs = require("fs");
+
+const noLog = require("./excluded-channels.js");
 
 const bot = new Discord.Client(); //disable @everyone and @here mentions by adding this as a client option     {disableEveryone: true}
 bot.commands = new Discord.Collection();
@@ -49,10 +52,12 @@ bot.on("ready", () => {
     let readymessage = `-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-\nBot is online!\nBot tag: @${bot.user.tag}\nBot owner: @${u.tag}\n-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-`;
     console.log(readymessage); //When the bot is onine send this into console
     if (devMode) {
-      console.log("DEVELOPER MODE = ON");
+      console.log("Developer Mode = ON");
     }
     if (MsgLog) {
-      console.log("Message logger:");
+      console.log("Message Logger:");
+    } else {
+      console.log("Message Logger = OFF");
     }
   });
 
@@ -92,40 +97,42 @@ bot.on("message", message => {
 
   //Message logger
   if (message && !message.author.bot && MsgLog) {
-    if (message.channel.type === "text") {
-      if (!message.content && message.attachments.size >= 1) {
-        message.content = `_< ${message.attachments.size} attachement(s) >_`;
-      } else if (message.content && message.attachments.size >= 1) {
-        message.content = `_< ${message.attachments.size} attachement(s) >_\n${message.content}`;
-      } else if (!message.content) {
-        message.content = "_<empty message>_";
+    if (!noLog.exc.includes(message.channel.id)) {
+      if (message.channel.type === "text") {
+        if (!message.content && message.attachments.size >= 1) {
+          message.content = `_< ${message.attachments.size} attachement(s) >_`;
+        } else if (message.content && message.attachments.size >= 1) {
+          message.content = `_< ${message.attachments.size} attachement(s) >_\n${message.content}`;
+        } else if (!message.content) {
+          message.content = "_<empty message>_";
+        }
+
+        console.log(
+          "\x1b[36m%s\x1b[0m",
+          `(${message.guild.name}) (#${message.channel.name}) >> ${message.author.tag}: ${message.content}`
+        );
+
+        let channel = message.guild.channels.find(
+          ch => ch.id === "625609556252295168"
+        );
+        let mEmbed = new Discord.RichEmbed()
+          .setAuthor(
+            `${message.author.tag} in #${message.channel.name}`,
+            `${message.author.displayAvatarURL}`
+          )
+          .setTitle(`Message:`)
+          .setURL(`${message.url}`)
+          .setDescription(`${message.content}`)
+          .addField("Message link:", `${message.url}`)
+          .setTimestamp();
+
+        channel.send(mEmbed);
+      } else if (message.channel.type === "dm" && MsgLog) {
+        console.log(
+          "\x1b[36m%s\x1b[0m",
+          `(${message.channel.type}) ${message.author.tag}: ${message.content}`
+        );
       }
-
-      console.log(
-        "\x1b[36m%s\x1b[0m",
-        `(${message.guild.name}) (#${message.channel.name}) >> ${message.author.tag}: ${message.content}`
-      );
-
-      let channel = message.guild.channels.find(
-        ch => ch.name === "yume-message-logs"
-      );
-      let mEmbed = new Discord.RichEmbed()
-        .setAuthor(
-          `${message.author.tag} in #${message.channel.name}`,
-          `${message.author.displayAvatarURL}`
-        )
-        .setTitle(`Message:`)
-        .setURL(`${message.url}`)
-        .setDescription(`${message.content}`)
-        .addField("Message link:", `${message.url}`)
-        .setTimestamp();
-
-      channel.send(mEmbed);
-    } else if (message.channel.type === "dm" && MsgLog) {
-      console.log(
-        "\x1b[36m%s\x1b[0m",
-        `(${message.channel.type}) ${message.author.tag}: ${message.content}`
-      );
     }
   }
 
@@ -171,7 +178,6 @@ bot.on("message", message => {
   const xing = bot.emojis.find(emoji => emoji.name === "xing");
   const rifle = bot.emojis.find(emoji => emoji.name === "rifle");
   const jojosfx = bot.emojis.find(emoji => emoji.name === "jojosfx");
-  const smug = bot.emojis.find(emoji => emoji.name === "smug");
 
   //embeds
   const emb1 = new Discord.RichEmbed()
@@ -196,9 +202,10 @@ bot.on("message", message => {
       "You dare summon me, the one who wields the power of stars?" + xing
     );
 
+  //Free to use
   const emb6 = new Discord.RichEmbed()
-    .setColor("#ff0000")
-    .setDescription(`I will lick you!`);
+    .setColor(color)
+    .setDescription(`Sample text`);
 
   const emb8 = new Discord.RichEmbed()
     .setColor("#cf1e25")
@@ -255,14 +262,6 @@ bot.on("message", message => {
     } else if (nr === "3") {
       message.channel.send(`Hey! ${message.author}`);
     }
-  }
-
-  if (
-    message.content.includes("<@565101979349549056>") ||
-    message.content.includes("<@!565101979349549056>")
-  ) {
-    message.react(smug);
-    message.channel.send(emb6);
   }
 
   if (
@@ -387,65 +386,67 @@ bot.on("message", message => {
 bot.on("messageUpdate", (oldMessage, newMessage) => {
   //Edited messages logger
   if (newMessage && !newMessage.author.bot && MsgLog) {
-    if (newMessage.channel.type === "text") {
-      if (!newMessage.content && newMessage.attachments.size >= 1) {
-        newMessage.content = `_< ${newMessage.attachments.size} attachement(s) >_`;
-      } else if (newMessage.content && newMessage.attachments.size >= 1) {
-        newMessage.content = `_< ${newMessage.attachments.size} attachement(s) >_\n${newMessage.content}`;
-      } else if (!newMessage.content) {
-        newMessage.content = "_<empty message>_";
+    if (!noLog.exc.includes(newMessage.channel.id)) {
+      if (newMessage.channel.type === "text") {
+        if (!newMessage.content && newMessage.attachments.size >= 1) {
+          newMessage.content = `_< ${newMessage.attachments.size} attachement(s) >_`;
+        } else if (newMessage.content && newMessage.attachments.size >= 1) {
+          newMessage.content = `_< ${newMessage.attachments.size} attachement(s) >_\n${newMessage.content}`;
+        } else if (!newMessage.content) {
+          newMessage.content = "_<empty message>_";
+        }
+
+        console.log(
+          "\x1b[36m%s\x1b[0m",
+          `(${newMessage.guild.name}) (#${newMessage.channel.name}) >> ${newMessage.author.tag}: (edited): ${newMessage.content}`
+        );
+
+        let eChannel = newMessage.guild.channels.find(
+          chn => chn.id === "625609556252295168"
+        );
+
+        if (oldMessage.content.length > 1024) {
+          let mEembed = new Discord.RichEmbed()
+            .setAuthor(
+              `${newMessage.author.tag} in #${newMessage.channel.name}`,
+              `${newMessage.author.displayAvatarURL}`
+            )
+            .setTitle(`Edited Message:`)
+            .setURL(`${newMessage.url}`)
+            .setDescription(`${newMessage.content}`)
+            .addField(
+              `Old Message: (part 1)`,
+              `${oldMessage.content.slice(0, oldMessage.content.length - 1024)}`
+            )
+            .addField(
+              `Old Message: (part 2)`,
+              `${oldMessage.content.slice(1024)}`
+            )
+            .addField("Message link:", `${newMessage.url}`)
+            .setTimestamp();
+
+          eChannel.send(mEembed);
+        } else {
+          let mEembed = new Discord.RichEmbed()
+            .setAuthor(
+              `${newMessage.author.tag} in #${newMessage.channel.name}`,
+              `${newMessage.author.displayAvatarURL}`
+            )
+            .setTitle(`Edited Message:`)
+            .setURL(`${newMessage.url}`)
+            .setDescription(`${newMessage.content}`)
+            .addField(`Old Message:`, `${oldMessage.content}`)
+            .addField("Message link:", `${newMessage.url}`)
+            .setTimestamp();
+
+          eChannel.send(mEembed);
+        }
+      } else if (newMessage.channel.type === "dm" && MsgLog) {
+        console.log(
+          "\x1b[36m%s\x1b[0m",
+          `(${newMessage.channel.type}) ${newMessage.author.tag}: (edited): ${newMessage.content}`
+        );
       }
-
-      console.log(
-        "\x1b[36m%s\x1b[0m",
-        `(${newMessage.guild.name}) (#${newMessage.channel.name}) >> ${newMessage.author.tag}: (edited): ${newMessage.content}`
-      );
-
-      let eChannel = newMessage.guild.channels.find(
-        chn => chn.name === "yume-message-logs"
-      );
-
-      if (oldMessage.content.length > 1024) {
-        let mEembed = new Discord.RichEmbed()
-          .setAuthor(
-            `${newMessage.author.tag} in #${newMessage.channel.name}`,
-            `${newMessage.author.displayAvatarURL}`
-          )
-          .setTitle(`Edited Message:`)
-          .setURL(`${newMessage.url}`)
-          .setDescription(`${newMessage.content}`)
-          .addField(
-            `Old Message: (part 1)`,
-            `${oldMessage.content.slice(0, oldMessage.content.length - 1024)}`
-          )
-          .addField(
-            `Old Message: (part 2)`,
-            `${oldMessage.content.slice(1024)}`
-          )
-          .addField("Message link:", `${newMessage.url}`)
-          .setTimestamp();
-
-        eChannel.send(mEembed);
-      } else {
-        let mEembed = new Discord.RichEmbed()
-          .setAuthor(
-            `${newMessage.author.tag} in #${newMessage.channel.name}`,
-            `${newMessage.author.displayAvatarURL}`
-          )
-          .setTitle(`Edited Message:`)
-          .setURL(`${newMessage.url}`)
-          .setDescription(`${newMessage.content}`)
-          .addField(`Old Message:`, `${oldMessage.content}`)
-          .addField("Message link:", `${newMessage.url}`)
-          .setTimestamp();
-
-        eChannel.send(mEembed);
-      }
-    } else if (newMessage.channel.type === "dm" && MsgLog) {
-      console.log(
-        "\x1b[36m%s\x1b[0m",
-        `(${newMessage.channel.type}) ${newMessage.author.tag}: (edited): ${newMessage.content}`
-      );
     }
   }
 });
