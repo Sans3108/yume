@@ -8,7 +8,6 @@ module.exports = {
     usage: '[@user/user ID] [message]',
     cooldown: 2,
     args: true,
-    staff: true,
     execute(message, args, bot, color) {
         const perms = ["ADMINISTRATOR"];
 

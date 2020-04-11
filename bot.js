@@ -15,6 +15,10 @@ const Discord = require("discord.js");
 const { ownerID } = require("./config.json");
 const { prefix } = require("./prefix.json");
 const fs = require("fs");
+const db = require('quick.db');
+
+const ytdl = require("ytdl-core");
+const queue = new Map();
 
 const noLog = require("./excluded-channels.js");
 
@@ -45,6 +49,13 @@ function number() {
 
   return `${rand}`;
 }
+
+bot.once("reconnecting", () => {
+  console.log("Reconnecting!");
+});
+bot.once("disconnect", () => {
+  console.log("Disconnect!");
+});
 
 //Ready event
 bot.on("ready", () => {
@@ -79,11 +90,25 @@ bot.on("ready", () => {
     //Bot rich presence
     bot.user.setPresence({
       game: {
-        name: `Yume || "` + prefix + `cmds"`,
+        name: `Yume | "` + prefix + `help"`,
         type: "LISTENING"
       }
     });
   }
+  let yume = bot.guilds.get("475556509590487041");
+  let rainbowRole = yume.roles.get("698601378087698432");
+  setInterval(() => {
+    rainbowRole.setColor("RANDOM");
+  }, 30000);
+});
+
+//Uhh
+bot.once("reconnecting", () => {
+  console.log("Reconnecting!");
+});
+
+bot.once("disconnect", () => {
+  console.log("Disconnect!");
 });
 
 //Message event
@@ -215,6 +240,21 @@ bot.on("message", message => {
     `_Golden wind starts playing..._`
   );
 
+  //function
+  function hasPing(id) {
+    let v;
+    if (
+      message.content.includes(`<@${id}>`) ||
+      message.content.includes(`<@!${id}>`)
+    ) {
+      v = true;
+    } else {
+      v = false;
+    }
+
+    return v;
+  }
+
   //responses
 
   if (message.content.toLowerCase() === "no u") {
@@ -222,8 +262,8 @@ bot.on("message", message => {
   }
 
   if (
-    message.content.includes("<@366536353418182657>") ||
-    message.content.includes("<@!366536353418182657>")
+    hasPing("366536353418182657") &&
+    message.author.id !== "366536353418182657"
   ) {
     const nr = number();
     message.react(blue_soul);
@@ -238,8 +278,8 @@ bot.on("message", message => {
   }
 
   if (
-    message.content.includes("<@489901090603663400>") ||
-    message.content.includes("<@!489901090603663400>")
+    hasPing("489901090603663400") &&
+    message.author.id !== "489901090603663400"
   ) {
     const nr = number();
     if (nr === "1" || nr === "3") {
@@ -265,8 +305,8 @@ bot.on("message", message => {
   }
 
   if (
-    message.content.includes("<@238717249626570753>") ||
-    message.content.includes("<@!238717249626570753>")
+    hasPing("238717249626570753") &&
+    message.author.id !== "238717249626570753"
   ) {
     message.react("👻");
     message.react("🍕");
@@ -274,24 +314,24 @@ bot.on("message", message => {
   }
 
   if (
-    message.content.includes("<@143160118090006530>") ||
-    message.content.includes("<@!143160118090006530>")
+    hasPing("143160118090006530") &&
+    message.author.id !== "143160118090006530"
   ) {
     message.react(xing);
     message.channel.send(emb5);
   }
 
   if (
-    message.content.includes("<@258872670723112960>") ||
-    message.content.includes("<@!258872670723112960>")
+    hasPing("258872670723112960") &&
+    message.author.id !== "258872670723112960"
   ) {
     message.react(rifle);
     message.channel.send(emb8);
   }
 
   if (
-    message.content.includes("<@431070484889862144>") ||
-    message.content.includes("<@!431070484889862144>")
+    hasPing("431070484889862144") &&
+    message.author.id !== "431070484889862144"
   ) {
     message.react(jojosfx);
     message.channel.send(emb9);
@@ -305,6 +345,14 @@ bot.on("message", message => {
   //-------
 
   const args = message.content.slice(prefix.length).split(/ +/); //message.content.substring(prefix.length).split(/ +/);
+  
+  let serverQueue; //------------------
+  if (message.guild) {
+    serverQueue = queue.get(message.guild.id);
+  } else {
+    serverQueue = "DM message"
+  }
+  
   const commandName = args.shift().toLowerCase();
 
   const command =
@@ -369,7 +417,7 @@ bot.on("message", message => {
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   try {
-    command.execute(message, args, bot, color, command, fs);
+    command.execute(message, args, bot, color, command, fs, serverQueue);
   } catch (error) {
     console.error(error);
 

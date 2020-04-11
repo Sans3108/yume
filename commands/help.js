@@ -25,14 +25,13 @@ module.exports = {
 		.setDescription('That command does not exist... try again?');
 
 		if (!args.length) {
-			data.push('**Here\'s a list of all my commands:**\n_');
-			data.push(commands.filter(c => !c.ownerOnly && !c.staff).map(command => command.name).join('_ | _'));
-			data.push(`_\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
+			data.push('**Here\'s a list of all my commands:**\n');
+			data.push(commands.filter(c => !c.ownerOnly).map(command => '_`' + prefix + command.name + '`_' + ` - ${command.description}`).join('\n'));
 
 			const embed5 = new Discord.RichEmbed()
 			.setColor(color)
 			.setDescription(data, { split: true })
-      .setFooter(`Tip: use ${prefix}cmds to find different help sections.`);
+      .setFooter(`You can send "${prefix}help [command name]" to get info on a specific command!`);
 
 			return message.author.send(embed5)
 				.then(() => {
