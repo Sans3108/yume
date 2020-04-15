@@ -11,7 +11,7 @@ module.exports = {
     let infoUser = message.mentions.members.first();
 
     const embed1 = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.red)
       .setDescription(
         `I'm sorry but you can't mention more than 1 user when using this command.`
       );
@@ -20,7 +20,7 @@ module.exports = {
 
     if (!args[0]) {
       let embed2 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setTitle(`${message.member.displayName}'s profile picture:`)
         .setDescription(`Link: ${message.author.displayAvatarURL}`)
         .setImage(message.author.displayAvatarURL);
@@ -28,7 +28,7 @@ module.exports = {
       message.channel.send(embed2);
     } else if (args[0] && infoUser) {
       let embed4 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setTitle(`${infoUser.displayName}'s profile picture:`)
         .setDescription(infoUser.user.displayAvatarURL)
         .setImage(infoUser.user.displayAvatarURL);
@@ -36,7 +36,7 @@ module.exports = {
       message.channel.send(embed4);
     } else if (!infoUser) {
       let embed3 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setTitle(`${message.member.displayName}'s profile picture:`)
         .setDescription(`Link: ${message.author.displayAvatarURL}`)
         .setImage(message.author.displayAvatarURL);

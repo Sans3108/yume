@@ -13,7 +13,7 @@ module.exports = {
     }
 
     const embed1 = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.blue)
       .setTitle(`Server info (${message.guild.name})`)
       .setThumbnail(`${message.guild.iconURL}`)
       .addField(`Server name:`, `${message.guild.name}`)

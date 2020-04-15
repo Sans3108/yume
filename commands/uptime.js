@@ -15,7 +15,7 @@ module.exports = {
     let seconds = Math.floor(totalSeconds % 60);
 
     let uptime = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.blue)
       .setTitle("Bot uptime:")
       .setDescription(
         `${days} day/s\n${hours} hour/s\n${minutes} minute/s\n${seconds} second/s`

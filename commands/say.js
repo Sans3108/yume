@@ -12,11 +12,11 @@ module.exports = {
 		const perms2 = ["SEND_TTS_MESSAGES"]
 
 		const embed1 = new Discord.RichEmbed()
-			.setColor(color)
+			.setColor(color.red)
 			.setDescription(`You shall get permissions first! (\`${perms}\`)`);
 
 		const embed2 = new Discord.RichEmbed()
-			.setColor(color)
+			.setColor(color.blue)
 			.setDescription(`In order to send TTS (text-to-speech) messages you will need these additional permission(s): (\`${perms2}\`)`);
 
 

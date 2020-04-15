@@ -7,6 +7,7 @@ function clean(text) {
 
 const Discord = require("discord.js");
 const db = require('quick.db');
+const f = require('../functions.js');
 
 module.exports = {
 	name: 'eval',

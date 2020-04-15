@@ -14,30 +14,30 @@ module.exports = {
         const perms = ["MANAGE_NICKNAMES"];
 
         const embed1 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`You shall get permissions first! (\`${perms}\`)`);
 
         if (!message.member.hasPermission(perms)) return message.channel.send(embed1);
 
         let newNick = args.join(' ');
         let embed5 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.red)
         .setDescription('Please provide the new nickname for the bot.')
 
         if (!newNick) return message.channel.send(embed5);
         let resetNick = 'reset';
 
         const embed2 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.green)
             .setTitle('My nickname was set to:')
             .setDescription(`${newNick}`);
 
         const embed3 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.green)
             .setTitle('My nickname was cleared!');
 
         const embed4 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setTitle('My new nickname can\'t contain more than 32 characters!\n(Including spaces or other non-alpha-numetrical characters!)');
 
         if (newNick.length > 32) {

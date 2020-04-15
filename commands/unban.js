@@ -13,25 +13,25 @@ module.exports = {
     const perms = ["BAN_MEMBERS"];
 
     const embed1 = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.red)
       .setDescription(`You shall get permissions first! (\`${perms}\`)`);
 
     if (!message.member.hasPermission(perms))
       return message.channel.send(embed1);
 
     let embed2 = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.red)
       .setDescription(`The ID: _${args[0]}_ is invalid.`);
 
     let embed4 = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.blue)
       .setDescription("Could not unban user.");
 
     bot
       .fetchUser(args[0])
       .then(bannedMember => {
         let embed3 = new Discord.RichEmbed()
-          .setColor(color)
+          .setColor(color.green)
           .setDescription(
             `${bannedMember.tag} has been unbanned by ${message.author}`
           );

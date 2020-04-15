@@ -13,19 +13,19 @@ module.exports = {
         const perms = ["ADMINISTRATOR"];
 
         const embed1 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`You shall get permissions first! (\`${perms}\`)`);
 
         if (message.channel.type === 'text' && !message.member.hasPermission(perms)) return message.channel.send(embed1);
 
         const embed2 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`I'm sorry but you can't mention anyone while using this command.`);
 
         if (message.mentions.users.size >= 1) return message.channel.send(embed2);
 
         const embed3 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`Please provide a user ID.`);
 
         let member = args[0];
@@ -38,7 +38,7 @@ module.exports = {
         if (isNaN(member)) return message.channel.send(embed3);
 
         const embed9 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Cannot DM myself.');
 
         if (message.channel.type === 'dm') {
@@ -48,7 +48,7 @@ module.exports = {
         let m = args.slice(1).join(' ');
 
         const embed4 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Please provide a valid track name.');
 
         if (!m) return message.channel.send(embed4)
@@ -62,11 +62,11 @@ module.exports = {
             .setDescription('Using this command in DM is only available to the bot owner!');*/
 
         const embed7 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Cannot dm that user. \n(Their DMs are disabled.)');
 
         const embed8 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Cannot find user to dm. \n(You used the wrong ID or the user with that ID doesn\'t exist.)');
 
         /*const embed10 = new Discord.RichEmbed()

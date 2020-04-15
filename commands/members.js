@@ -7,7 +7,7 @@ module.exports = {
   guildOnly: true,
   execute(message, args, bot, color) {
     const embed1 = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.blue)
       .setTitle("Members info:")
       .setDescription(
         `Humans: **${

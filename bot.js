@@ -15,10 +15,7 @@ const Discord = require("discord.js");
 const { ownerID } = require("./config.json");
 const { prefix } = require("./prefix.json");
 const fs = require("fs");
-const db = require('quick.db');
-
-const ytdl = require("ytdl-core");
-const queue = new Map();
+const db = require("quick.db");
 
 const noLog = require("./excluded-channels.js");
 
@@ -40,7 +37,7 @@ const MsgLog = true; //switch on and off the message logger
 const devMode = false; //turn on and off dev mode, no one other than the owner can use commands
 
 //let color = hexColor();
-let color = "RANDOM";
+let color = require('./colors.json');
 
 //random number from 1 to 3
 function number() {
@@ -95,11 +92,6 @@ bot.on("ready", () => {
       }
     });
   }
-  let yume = bot.guilds.get("475556509590487041");
-  let rainbowRole = yume.roles.get("698601378087698432");
-  setInterval(() => {
-    rainbowRole.setColor("RANDOM");
-  }, 30000);
 });
 
 //Uhh
@@ -163,31 +155,25 @@ bot.on("message", message => {
 
   //embeds for the messages
   let embed1 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.blue)
     .setDescription(`That's my prefix!`);
 
   let embed2 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.blue)
     .setDescription(`That command doesn't exist, try again?`);
 
   let embed3 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.red)
     .setDescription(`You shall not use this in DM's!`);
 
   let embed4 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.red)
     .setDescription(
       `Command can only be used by the bot owner!\nThe bot owner is: <@${ownerID}>`
     );
 
-  let embed5 = new Discord.RichEmbed()
-    .setColor(color)
-    .setDescription(
-      `Command is WiP (Work in Progress), undergoing maintanance/changes or it is disabled!`
-    );
-
   let embed6 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.red)
     .setDescription(
       `I can't execute commands while <@${ownerID}> is updating my code!`
     );
@@ -206,15 +192,15 @@ bot.on("message", message => {
 
   //embeds
   const emb1 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.random)
     .setDescription("_Megalovania starts playing..._");
 
   const emb2 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.random)
     .setDescription(`_Shouldn\'t have done that, ${message.author}..._`);
 
   const emb3 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.random)
     .setDescription("_You're gonna have a bad time..._");
 
   const emb4 = new Discord.RichEmbed()
@@ -229,7 +215,7 @@ bot.on("message", message => {
 
   //Free to use
   const emb6 = new Discord.RichEmbed()
-    .setColor(color)
+    .setColor(color.orange)
     .setDescription(`Sample text`);
 
   const emb8 = new Discord.RichEmbed()
@@ -345,14 +331,7 @@ bot.on("message", message => {
   //-------
 
   const args = message.content.slice(prefix.length).split(/ +/); //message.content.substring(prefix.length).split(/ +/);
-  
-  let serverQueue; //------------------
-  if (message.guild) {
-    serverQueue = queue.get(message.guild.id);
-  } else {
-    serverQueue = "DM message"
-  }
-  
+
   const commandName = args.shift().toLowerCase();
 
   const command =
@@ -370,7 +349,7 @@ bot.on("message", message => {
 
   if (command.args && !args.length) {
     let reply = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.red)
       .setDescription(`You didn't provide any arguments, ${message.author}!`);
 
     if (command.usage) {
@@ -384,8 +363,6 @@ bot.on("message", message => {
 
   if (command.ownerOnly && message.author.id !== ownerID)
     return message.channel.send(embed4);
-
-  if (command.wip) return message.channel.send(embed5);
 
   if (!cooldowns.has(command.name)) {
     cooldowns.set(command.name, new Discord.Collection());
@@ -402,7 +379,7 @@ bot.on("message", message => {
       const timeLeft = (expirationTime - now) / 1000;
 
       let cooldownembed = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.red)
         .setDescription(
           `(Cooldown) Please wait ${timeLeft.toFixed(
             1
@@ -417,12 +394,12 @@ bot.on("message", message => {
   setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
 
   try {
-    command.execute(message, args, bot, color, command, fs, serverQueue);
+    command.execute(message, args, bot, color, command, fs);
   } catch (error) {
     console.error(error);
 
     const erremb = new Discord.RichEmbed()
-      .setColor(color)
+      .setColor(color.red)
       .setDescription(
         `Sorry, there was a error...\nThe error looks like this:\n\`\`\`${error}\`\`\``
       );

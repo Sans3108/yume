@@ -56,7 +56,7 @@ module.exports = {
 
     if (!args[0]) {
       let embed0 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setDescription(
           `You rolled...\n${final1.emote}\nTotal: ${final1.value}`
         );
@@ -64,7 +64,7 @@ module.exports = {
       message.channel.send(embed0);
     } else if (args[0] === "1") {
       let embed1 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setDescription(
           `You rolled...\n${final1.emote}\nTotal: ${final1.value}`
         );
@@ -72,7 +72,7 @@ module.exports = {
       message.channel.send(embed1);
     } else if (args[0] === "2") {
       let embed2 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setDescription(
           `You rolled...\n${final1.emote} ${
             final2.emote
@@ -82,7 +82,7 @@ module.exports = {
       message.channel.send(embed2);
     } else if (args[0] === "3") {
       let embed3 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setDescription(
           `You rolled...\n${final1.emote} ${final2.emote} ${
             final3.emote
@@ -92,7 +92,7 @@ module.exports = {
       message.channel.send(embed3);
     } else if (args[0] === "4") {
       let embed4 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setDescription(
           `You rolled...\n${final1.emote} ${final2.emote} ${final3.emote}\n${
             final4.emote
@@ -105,7 +105,7 @@ module.exports = {
       message.channel.send(embed4);
     } else if (args[0] === "5") {
       let embed5 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setDescription(
           `You rolled...\n${final1.emote} ${final2.emote} ${final3.emote}\n${
             final4.emote
@@ -119,7 +119,7 @@ module.exports = {
       message.channel.send(embed5);
     } else if (args[0] === "6") {
       let embed6 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setDescription(
           `You rolled...\n${final1.emote} ${final2.emote} ${final3.emote}\n${
             final4.emote
@@ -134,7 +134,7 @@ module.exports = {
       message.channel.send(embed6);
     } else {
       let eEmbed = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.red)
         .setDescription(`${args[0]} is not a number between 1-6!`);
 
       message.channel.send(eEmbed);

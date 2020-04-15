@@ -1,28 +1,40 @@
 const Discord = require("discord.js");
-const db = require('quick.db');
+const db = require("quick.db");
+const f = require('../functions.js');
 
 module.exports = {
   name: "work",
-  description: "Work and get paid! [1h cooldown]",
+  description: "Work and get paid! [3 - 25/h]",
   cooldown: 3600,
-  ownerOnly: true,
   guildOnly: true,
   execute(message, args, bot, color) {
     try {
-      let user = db.fetch(message.author.id)
-      user.bal = user.bal + 69;
-      db.set(message.author.id, user)
+      let user = db.fetch(message.author.id);
       
-      message.channel.send("You worked for 69!\nTotal balance: "+ db.fetch(message.author.id).bal);
+      let rand = f.randomNumber(3, 25);
+    
+      user.bal = user.bal + rand;
+      db.set(message.author.id, user);
       
+      let emb1 = new Discord.RichEmbed()
+        .setColor(color.green)
+        .setDescription(`You worked for ${rand}${db.fetch("cfg").currency}\nTotal balance: ${db.fetch(message.author.id).bal}${db.fetch("cfg").currency}`)
+
+      message.channel.send(emb1);
     } catch {
-      db.set(message.author.id, { bal: 0});
+      db.set(message.author.id, { bal: 0, joinedAt: Date(Date.now()).slice(4, -47), inventory: [] });
+      let user = db.fetch(message.author.id);
       
-      let user = db.fetch(message.author.id)
-      user.bal = user.bal + 69;
-      db.set(message.author.id, user)
+      let rand = f.randomNumber(3, 25);
+    
+      user.bal = user.bal + rand;
+      db.set(message.author.id, user);
       
-      message.channel.send("You worked for 69!\nTotal balance: "+ db.fetch(message.author.id).bal);
+      let emb2 = new Discord.RichEmbed()
+        .setColor(color.green)
+        .setDescription(`You worked for ${rand}${db.fetch("cfg").currency}\nTotal balance: ${db.fetch(message.author.id).bal}${db.fetch("cfg").currency}`)
+
+      message.channel.send(emb2);
     }
   }
 };

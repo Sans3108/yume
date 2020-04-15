@@ -9,11 +9,11 @@ module.exports = {
   execute(message, args, bot, color) {
     function resetBot(channel) {
       let embed1 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.orange)
         .setDescription('Restarting the bot, please wait a few seconds...');
       
       let embed2 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.green)
         .setDescription('Done restarting the bot!');
       
       message.channel.send(embed1)

@@ -14,7 +14,7 @@ module.exports = {
         const perms = ["MANAGE_NICKNAMES"];
 
         const embed1 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`You shall get permissions first! (\`${perms}\`)`);
 
         if (!message.member.hasPermission(perms)) return message.channel.send(embed1);
@@ -23,7 +23,7 @@ module.exports = {
         let newNick = args.slice(1).join(' ');
 
         let embed7 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`Please provide the new nickname for ${member}.`)
 
         if (!newNick) return message.channel.send(embed7);
@@ -31,27 +31,27 @@ module.exports = {
         let resetNick = 'reset';
 
         const embed5 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`Please mention a valid member in order to change their nickname!`);
 
         const embed6 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.blue)
             .setDescription(`If you wish to change my nickname use the \`\`${prefix}bot-nick\`\` command.`)
 
         if (!member) return message.channel.send(embed5);
         if (member.user.id === bot.user.id) return message.channel.send(embed6)
 
         const embed2 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.green)
             .setTitle(`${member.user.tag}'s nickname was set to:`)
             .setDescription(`${newNick}`);
 
         const embed3 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.green)
             .setTitle(`${member.user.tag}'s nickname was cleared!`);
 
         const embed4 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`${member.user.tag}'s nickname can\'t contain more than 32 characters!\n(Including spaces or other non-alpha-numetrical characters!)`);
 
         if (newNick.length > 32) {

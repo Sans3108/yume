@@ -6,7 +6,7 @@ module.exports = {
     cooldown: 2,
     execute(message, args, bot, color) {
         let embed1 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setTitle('Our permanent invite link!')
         .setDescription('https://discord.gg/b4fw9uw');
 

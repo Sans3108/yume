@@ -7,7 +7,7 @@ module.exports = {
     ownerOnly: true,
     execute(message, args, bot, color) {
         const emb1 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setTitle(`Invite me to a server!`)
         .setURL('https://discordapp.com/oauth2/authorize?client_id=596272235765825546&scope=bot&permissions=2146958847');
 

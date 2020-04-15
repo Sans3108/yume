@@ -14,15 +14,15 @@ module.exports = {
 
 		//embeds
 		const embed1 = new Discord.RichEmbed()
-		.setColor(color)
+		.setColor(color.green)
 		.setDescription('I\'ve sent you a DM with all my Developer commands!');
 
 		const embed2 = new Discord.RichEmbed()
-		.setColor(color)
+		.setColor(color.red)
 		.setDescription('It seems like I can\'t DM you!');
 
 		const embed3 = new Discord.RichEmbed()
-		.setColor(color)
+		.setColor(color.red)
 		.setDescription('That command does not exist... try again?');
 
 		if (!args.length) {
@@ -30,7 +30,7 @@ module.exports = {
 			data.push(commands.filter(c => c.ownerOnly).map(command => '_`' + prefix + command.name + '`_' + ` - ${command.description}`).join('\n'));
 
 			const embed5 = new Discord.RichEmbed()
-			.setColor(color)
+			.setColor(color.blue)
 			.setDescription(data, { split: true })
       .setFooter(`You can send "${prefix}devhelp [command name]" to get info on a specific command!`);
 
@@ -61,7 +61,7 @@ module.exports = {
 		data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
 
 		const embed4 = new Discord.RichEmbed()
-		.setColor(color)
+		.setColor(color.blue)
 		.setDescription(data, { split: true });
 
 		message.channel.send(embed4);

@@ -12,19 +12,19 @@ module.exports = {
         const perms = ["ADMINISTRATOR"];
 
         const embed1 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`You shall get permissions first! (\`${perms}\`)`);
 
         if (message.channel.type === 'text' && !message.member.hasPermission(perms)) return message.channel.send(embed1);
 
         const embed2 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`I'm sorry but you can't mention more than 1 user when using this command.`);
 
         if (message.mentions.users.size >= 2) return message.channel.send(embed2);
 
         const embed3 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription(`Please mention a valid member.`);
 
         let member;
@@ -37,7 +37,7 @@ module.exports = {
         if (!member) return message.channel.send(embed3);
 
         const embed9 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Cannot DM myself.');
 
         if (message.channel.type === 'dm') {
@@ -47,29 +47,29 @@ module.exports = {
         let m = args.slice(1).join(' ');
 
         const embed4 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Please provide a valid message in order to send it.');
 
         if (!m) return message.channel.send(embed4)
 
         const embed5 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('When using this command in DM you need to provide the user\'s ID and you need to make sure the bot is in the same server as the user.\nOne of these conditions was not met in this case.');
 
         const embed6 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Using this command in DM is only available to the bot owner!');
 
         const embed7 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Cannot dm that user.');
 
         const embed8 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.red)
             .setDescription('Cannot find user to dm.');
 
         const embed10 = new Discord.RichEmbed()
-            .setColor(color)
+            .setColor(color.green)
             .setTitle('DM command:')
             .setDescription('DM sent!');
 

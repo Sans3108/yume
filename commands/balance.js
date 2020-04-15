@@ -11,18 +11,18 @@ module.exports = {
     try {
       let user = db.fetch(message.author.id)
       let emb1 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setAuthor(message.member.displayName, message.author.displayAvatarURL, message.author.displayAvatarURL)
         .setDescription(`You have ${user.bal}${db.fetch('cfg').currency}`);
       message.channel.send(emb1);
       
     } catch {
-      db.set(message.author.id, { bal: 0});
+      db.set(message.author.id, { bal: 0, joinedAt: Date(Date.now()).slice(4, -47), inventory: [] });
       
       let user = db.fetch(message.author.id)
       
       let emb2 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.blue)
         .setAuthor(message.member.displayName, message.author.displayAvatarURL, message.author.displayAvatarURL)
         .setDescription(`You have ${user.bal}${db.fetch('cfg').currency}`);
       message.channel.send(emb2);

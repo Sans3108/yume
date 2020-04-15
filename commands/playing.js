@@ -13,10 +13,10 @@ module.exports = {
 
 		//embeds for the messages
 		const embed1 = new Discord.RichEmbed()
-		.setColor(color)
+		.setColor(color.red)
 		.setDescription(`Provide a valid rich presence type. \`\`Listening\`\` \`\`Playing\`\` \`\`Watching\`\``);
 		const embed2 = new Discord.RichEmbed()
-		.setColor(color)
+		.setColor(color.red)
         .setDescription(`Provide a valid rich presence message.`);
 
         if (!args[0]) return message.channel.send(embed1);
@@ -33,7 +33,7 @@ module.exports = {
                 }
             });
         const embed3 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.green)
         .setDescription(`Success! Changed the bot rich presence to:\n\`\`Listening to ${msg}\`\``);
         message.channel.send(embed3);
 
@@ -45,7 +45,7 @@ module.exports = {
                 }
             });
         const embed4 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.green)
         .setDescription(`Success! Changed the bot rich presence to:\n\`\`Playing ${msg}\`\``);
         message.channel.send(embed4);
 
@@ -57,7 +57,7 @@ module.exports = {
                 }
             });
         const embed5 = new Discord.RichEmbed()
-        .setColor(color)
+        .setColor(color.green)
         .setDescription(`Success! Changed the bot rich presence to:\n\`\`Watching ${msg}\`\``);
         message.channel.send(embed5);
 

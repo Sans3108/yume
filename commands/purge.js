@@ -14,18 +14,18 @@ module.exports = {
 
 		//embeds for the messages
 		const embed1 = new Discord.RichEmbed()
-			.setColor(color)
+			.setColor(color.red)
 			.setDescription(`You shall get permissions first! (\`${perms}\`)`);
 		const embed2 = new Discord.RichEmbed()
-			.setColor(color)
+			.setColor(color.red)
 			.setDescription(`Please provide a valid number of messages so I can delete them!`);
 		const embed3 = new Discord.RichEmbed()
-			.setColor(color)
+			.setColor(color.red)
 			.setDescription(`Please specify a number between 1 and 99!`);
 		const embed4 = new Discord.RichEmbed()
-			.setColor(color);
+			.setColor(color.green);
 		const embed5 = new Discord.RichEmbed()
-			.setColor(color);
+			.setColor(color.red);
 
 		if (!message.member.hasPermission(perms)) return message.channel.send(embed1);
 
