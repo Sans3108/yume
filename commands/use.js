@@ -8,6 +8,7 @@ module.exports = {
   name: "use",
   description: `Use an item from your inventory!`,
   cooldown: 3,
+  usage: "[item name]",
   args: true,
   guildOnly: true,
   execute(message, args, bot, color) {
@@ -26,8 +27,8 @@ module.exports = {
     
     if(f.arrayContains(args.join(' '), data.inventory.map(a => a.name))) {
       let item = items.find(i => i.name === args.join(' '));
-      //params in order: message, 
-      item.execute(message);
+      //params in order: message, bot 
+      item.execute(message, bot);
       
       let index = data.inventory.indexOf(item);
       data.inventory.splice(index, 1);

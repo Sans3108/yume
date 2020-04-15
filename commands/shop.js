@@ -8,6 +8,7 @@ module.exports = {
   name: "shop",
   description: `Check what items are in store!`,
   cooldown: 3,
+  usage: "<item name>",
   guildOnly: true,
   execute(message, args, bot, color) {
     if (db.fetch(message.author.id) === null) {

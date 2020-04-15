@@ -3,8 +3,9 @@ const db = require("quick.db");
 const f = require('../functions.js');
 
 module.exports = {
-  name: "work",
-  description: "Work and get paid! [3 - 25/h]",
+  name: "collect",
+  description: "Collect some credit! [3 - 25/h]",
+  aliases: ['work'],
   cooldown: 3600,
   guildOnly: true,
   execute(message, args, bot, color) {

@@ -47,13 +47,19 @@ module.exports = {
       .setColor(color.red)
       .setDescription("Invalid amount!");
     
-    if (isNaN(args[1])) return message.channel.send(emb2);
+    let v;
+    if(parseInt(args[1]) > 0) {
+      v = false;
+    } else {
+      v = true;
+    }
+    if(v) return message.channel.send(emb2);
     
     //--------
     
     try {
       let data = db.fetch(user);
-      data.bal = data.bal - parseInt(args[1], 10);
+      data.bal = data.bal - parseInt(args[1]);
       db.set(user, data);
 
       let emb3 = new Discord.RichEmbed()

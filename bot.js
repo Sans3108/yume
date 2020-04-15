@@ -377,13 +377,37 @@ bot.on("message", message => {
 
     if (now < expirationTime) {
       const timeLeft = (expirationTime - now) / 1000;
+      let hours = Math.floor(timeLeft / 3600);
+      let r1 = timeLeft % 3600;
+      let minutes = Math.floor(r1 / 60);
+      let seconds = Math.floor(r1 % 60);
+      
+      let finalTime;
+      
+      if(hours !== 0 && minutes !== 0 && seconds !== 0) {
+        finalTime = `${hours} hour(s), ${minutes} minute(s) and ${seconds} second(s)`;
+      } else if(hours !== 0 && minutes !== 0 && seconds === 0) {
+        finalTime = `${hours} hour(s) and ${minutes} minute(s)`;
+      } else if(hours !== 0 && minutes === 0 && seconds === 0) {
+        finalTime = `${hours} hour(s)`;
+      } else if(hours !== 0 && minutes === 0 && seconds !== 0) {
+        finalTime = `${hours} hour(s) and ${seconds} second(s)`;
+      } else if(hours === 0 && minutes !== 0 && seconds !== 0) {
+        finalTime = `${minutes} minute(s) and ${seconds} second(s)`;
+      } else if(hours === 0 && minutes !== 0 && seconds === 0) {
+        finalTime = `${minutes} minute(s)`;
+      } else if(hours === 0 && minutes === 0 && seconds === 0) {
+        finalTime = `${seconds} second(s)`;
+      } else if(hours === 0 && minutes === 0 && seconds !== 0) {
+        finalTime = `${seconds} second(s)`;
+      } else {
+        finalTime = '`You should not see this message, contact Sans ASAP!!!`';
+      }
 
       let cooldownembed = new Discord.RichEmbed()
         .setColor(color.red)
         .setDescription(
-          `(Cooldown) Please wait ${timeLeft.toFixed(
-            1
-          )} more second(s) before reusing the \`${command.name}\` command.`
+          `(Cooldown) Please wait ${finalTime} before reusing the \`${command.name}\` command.`
         );
 
       return message.channel.send(cooldownembed);
@@ -488,3 +512,4 @@ console.log(`${str.slice(0, str.length - 5)} && ${str.slice(5)}`)
 console.log(str)
 }
 */
+

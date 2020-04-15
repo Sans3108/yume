@@ -7,6 +7,7 @@ const f = require('../functions.js');
 module.exports = {
   name: "buy",
   description: `Buy an item with your credit!`,
+  usage: "[item name]",
   cooldown: 3,
   args: true,
   guildOnly: true,
