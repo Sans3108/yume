@@ -20,10 +20,13 @@
 *.tar
 *.zip
 
+node_modules/
+
 # Logs and databases #
 ######################
 *.log
 *.sql
+
 *.env
 
 # OS generated files #
