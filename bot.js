@@ -1,6 +1,6 @@
 //glitch ping thingy so the bot doesn't go offline
 require('dotenv').config();
-
+/*
 const http = require("http");
 const express = require("express");
 const app = express();
@@ -11,6 +11,8 @@ app.get("/", (request, response) => {
 setInterval(() => {
   http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
 }, 50000);
+
+*/
 
 //A hella ot of variables goddamnit xd
 const Discord = require("discord.js");
