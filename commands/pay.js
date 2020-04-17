@@ -7,6 +7,7 @@ module.exports = {
   description: "Pay someone!",
   usage: "[Mention || ID] [amount]",
   cooldown: 3,
+  ownerOnly: true,
   guildOnly: true,
   args: true,
   async execute(message, args, bot, color) {
