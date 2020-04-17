@@ -12,7 +12,15 @@ module.exports = {
     try {
       let user = db.fetch(message.author.id);
       
-      let rand = f.randomNumber(3, 25);
+      let r1 = f.randomNumber(3, 25);
+      let r2 = f.randomNumber(3, 25);
+      let r3 = f.randomNumber(3, 25);
+      let r4 = f.randomNumber(3, 25);
+      
+      let rand1 = Math.floor(( r1 + r2 ) / 2);
+      let rand2 = Math.floor(( r3 + r4 ) / 2);
+      
+      let rand = Math.floor((rand1 + rand2) / 2);
     
       user.bal = user.bal + rand;
       db.set(message.author.id, user);
@@ -26,7 +34,15 @@ module.exports = {
       db.set(message.author.id, { bal: 0, joinedAt: Date(Date.now()).slice(4, -47), inventory: [] });
       let user = db.fetch(message.author.id);
       
-      let rand = f.randomNumber(3, 25);
+      let r1 = f.randomNumber(3, 25);
+      let r2 = f.randomNumber(3, 25);
+      let r3 = f.randomNumber(3, 25);
+      let r4 = f.randomNumber(3, 25);
+      
+      let rand1 = Math.floor(( r1 + r2 ) / 2);
+      let rand2 = Math.floor(( r3 + r4 ) / 2);
+      
+      let rand = Math.floor((rand1 + rand2) / 2);
     
       user.bal = user.bal + rand;
       db.set(message.author.id, user);

@@ -120,7 +120,7 @@ bot.on("message", message => {
         );
 
         let channel = message.guild.channels.find(
-          ch => ch.id === "625609556252295168"
+          ch => ch.id === "625608730255425548"//"625609556252295168"
         );
         let mEmbed = new Discord.RichEmbed()
           .setAuthor(

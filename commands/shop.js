@@ -20,7 +20,7 @@ module.exports = {
     }
     
     if(!args.length) {
-     let shop = items.map(a => `\`${a.name}\` - ${a.price}${db.fetch('cfg').currency}`).join("\n");
+     let shop = items.sort((a, b) => a.price < b.price).map(a => `\`${a.name}\` - ${a.price}${db.fetch('cfg').currency} | (Stock: ${db.fetch(a.uid).stock})`)       //.join("\n");
     
       let emb1 = new Discord.RichEmbed()
         .setColor(color.blue)
@@ -31,13 +31,13 @@ module.exports = {
       return message.channel.send(emb1); 
     }
     
-    let shop2 = items.map(a => a.name);
+    let shop2 = items.map(a => a.name.toLowerCase());
     
     let emb3 = new Discord.RichEmbed()
       .setColor(color.red)
       .setDescription(`\`${args.join(' ')}\` doesn't exist in the shop!`);
-    if(f.arrayContains(args.join(' '), shop2)) {
-      let item = items.find(i => i.name === args.join(' '));
+    if(f.arrayContains(args.join(' ').toLowerCase(), shop2)) {
+      let item = items.find(i => i.name.toLowerCase() === args.join(' ').toLowerCase());
       
       let emb2 = new Discord.RichEmbed()
         .setColor(color.blue)
@@ -45,6 +45,7 @@ module.exports = {
         .setThumbnail(message.author.displayAvatarURL)
         .addField('Name:', item.name)
         .addField('Price:', item.price + db.fetch('cfg').currency)
+        .addField('In Stock:', db.fetch(item.uid).stock)
         .addField('Description:', item.description)
         .setFooter(`Use '${prefix}buy' to buy an item!`);
       return message.channel.send(emb2);

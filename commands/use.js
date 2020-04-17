@@ -25,8 +25,8 @@ module.exports = {
       .setColor(color.red)
       .setDescription('You don\'t have that item, check the shop and buy it first!');
     
-    if(f.arrayContains(args.join(' '), data.inventory.map(a => a.name))) {
-      let item = items.find(i => i.name === args.join(' '));
+    if(f.arrayContains(args.join(' ').toLowerCase(), data.inventory.map(a => a.name.toLowerCase()))) {
+      let item = items.find(i => i.name.toLowerCase() === args.join(' ').toLowerCase());
       //params in order: message, bot 
       item.execute(message, bot);
       

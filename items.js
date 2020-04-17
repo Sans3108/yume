@@ -4,6 +4,7 @@ module.exports = [
   {
     name: "Active Role",
     price: 750,
+    uid: 'i1',
     description: "Buy this role and show that you are active in our community!",
     execute: function(a) {
       if (!a) return new Error("No message object provided!");
@@ -19,6 +20,7 @@ module.exports = [
   {
     name: "Neko Role",
     price: 200,
+    uid: 'i2',
     description: "Wanna be a neko?",
     execute: function(a) {
       if (!a) return new Error("No message object provided!");
@@ -34,6 +36,7 @@ module.exports = [
   {
     name: "1500 Kakera",
     price: 100,
+    uid: 'i3',
     description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
@@ -50,6 +53,7 @@ module.exports = [
   {
     name: "3000 Kakera",
     price: 200,
+    uid: 'i4',
     description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 5% more kakera!",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
@@ -66,6 +70,7 @@ module.exports = [
   {
     name: "5250 Kakera",
     price: 350,
+    uid: 'i5',
     description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 15% more kakera!",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
@@ -82,6 +87,7 @@ module.exports = [
   {
     name: "7500 Kakera",
     price: 500,
+    uid: 'i6',
     description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 25% more kakera!",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
@@ -98,6 +104,7 @@ module.exports = [
   {
     name: "Discord Nitro Classic",
     price: 1250,
+    uid: 'i7',
     description: "Buy yourself Discord Nitro Classic gift for 1 month! Sponsored by <@143160118090006530>!\n(After you use this item you will be contacted by Croma or Sans to receive the gift.)",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
