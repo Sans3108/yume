@@ -39,10 +39,6 @@ module.exports = {
           .setDescription(`You need ${item.price - data.bal}${db.fetch('cfg').currency} more to buy \`${item.name}\`!`);
       
         if(data.bal >= item.price) {
-          //let stk = db.fetch(item.uid);
-          //stk.stock = stk.stock - 1;
-          //db.set(item.uid, stk);
-          
           data.inventory.push(item);
           data.bal = data.bal - item.price;
         

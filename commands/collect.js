@@ -27,7 +27,7 @@ module.exports = {
       
       let emb1 = new Discord.RichEmbed()
         .setColor(color.green)
-        .setDescription(`You worked for ${rand}${db.fetch("cfg").currency}\nTotal balance: ${db.fetch(message.author.id).bal}${db.fetch("cfg").currency}`)
+        .setDescription(`You collected ${rand}${db.fetch("cfg").currency}\nTotal balance: ${db.fetch(message.author.id).bal}${db.fetch("cfg").currency}`)
 
       message.channel.send(emb1);
     } catch {
@@ -49,7 +49,7 @@ module.exports = {
       
       let emb2 = new Discord.RichEmbed()
         .setColor(color.green)
-        .setDescription(`You worked for ${rand}${db.fetch("cfg").currency}\nTotal balance: ${db.fetch(message.author.id).bal}${db.fetch("cfg").currency}`)
+        .setDescription(`You collected ${rand}${db.fetch("cfg").currency}\nTotal balance: ${db.fetch(message.author.id).bal}${db.fetch("cfg").currency}`)
 
       message.channel.send(emb2);
     }

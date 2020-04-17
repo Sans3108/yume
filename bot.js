@@ -84,15 +84,6 @@ bot.on("ready", () => {
   }
 });
 
-//Uhh
-bot.once("reconnecting", () => {
-  console.log("Reconnecting!");
-});
-
-bot.once("disconnect", () => {
-  console.log("Disconnect!");
-});
-
 //Message event
 bot.on("message", message => {
   if (
@@ -120,7 +111,7 @@ bot.on("message", message => {
         );
 
         let channel = message.guild.channels.find(
-          ch => ch.id === "625609556252295168"
+          ch => ch.name === "message-log"
         );
         let mEmbed = new Discord.RichEmbed()
           .setAuthor(
@@ -329,6 +320,9 @@ bot.on("message", message => {
     bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
   if (!command) return message.channel.send(embed2);
+  
+  if (command.ownerOnly && message.author.id !== ownerID)
+    return message.channel.send(embed4);
 
   if (command && devMode && message.author.id !== ownerID)
     return message.channel.send(embed6);
@@ -350,9 +344,6 @@ bot.on("message", message => {
 
     return message.channel.send(reply);
   }
-
-  if (command.ownerOnly && message.author.id !== ownerID)
-    return message.channel.send(embed4);
 
   if (!cooldowns.has(command.name)) {
     cooldowns.set(command.name, new Discord.Collection());
