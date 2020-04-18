@@ -23,7 +23,7 @@ for (const file of commandFiles) {
 
 const cooldowns = new Discord.Collection();
 
-const MsgLog = true; //switch on and off the message logger
+const MsgLog = false; //switch on and off the message logger
 const devMode = false; //turn on and off dev mode, no one other than the owner can use commands
 
 //let color = hexColor();
@@ -36,13 +36,6 @@ function number() {
 
   return `${rand}`;
 }
-
-bot.once("reconnecting", () => {
-  console.log("Reconnecting!");
-});
-bot.once("disconnect", () => {
-  console.log("Disconnect!");
-});
 
 //Ready event
 bot.on("ready", () => {
