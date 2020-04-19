@@ -7,7 +7,7 @@
     "node": "10.x"
   },
   "scripts": {
-    "prod:start": "pm2-runtime bot.js"
+    "start": "node bot.js"
   },
   "author": "Sans",
   "license": "ISC",
