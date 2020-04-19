@@ -14,8 +14,8 @@ module.exports = {
       let emb1 = new Discord.RichEmbed()
         .setColor(color.blue)
         .setAuthor(message.member.displayName, message.author.displayAvatarURL, message.author.displayAvatarURL)
-        .setDescription(`You have ${user.bal}${db.fetch('cfg').currency}`)
-        .setFooter(`You can use the '${prefix}pay' command to pay someone!`);
+        .setDescription(`You have ${user.bal}${db.fetch('cfg').currency}`);
+        //.setFooter(`You can use the '${prefix}pay' command to pay someone!`);
       message.channel.send(emb1);
       
     } catch {
@@ -26,8 +26,8 @@ module.exports = {
       let emb2 = new Discord.RichEmbed()
         .setColor(color.blue)
         .setAuthor(message.member.displayName, message.author.displayAvatarURL, message.author.displayAvatarURL)
-        .setDescription(`You have ${user.bal}${db.fetch('cfg').currency}`)
-        .setFooter(`You can use the '${prefix}pay' command to pay someone!`);
+        .setDescription(`You have ${user.bal}${db.fetch('cfg').currency}`);
+        //.setFooter(`You can use the '${prefix}pay' command to pay someone!`);
       message.channel.send(emb2);
     }
   }
