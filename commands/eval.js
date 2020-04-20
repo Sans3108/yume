@@ -11,10 +11,8 @@ const f = require('../functions.js');
 
 module.exports = {
 	name: 'eval',
-	//description: '',	
-	//usage: '[text]',
 	ownerOnly: true,
-	cooldown: 0.5,
+  cooldown: 0.1,
 	execute(message, args, bot, color) {
 
 		try {

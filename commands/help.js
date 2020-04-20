@@ -56,8 +56,36 @@ module.exports = {
 		if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
 		if (command.description) data.push(`**Description:** ${command.description}`);
 		if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
+    
+    const timeLeft = command.cooldown || 3
+    let hours = Math.floor(timeLeft / 3600);
+    let r1 = timeLeft % 3600;
+    let minutes = Math.floor(r1 / 60);
+    let seconds = Math.floor(r1 % 60);
+      
+    let finalTime;
+      
+    if(hours !== 0 && minutes !== 0 && seconds !== 0) {
+      finalTime = `${hours} hour(s), ${minutes} minute(s) and ${seconds} second(s)`;
+    } else if(hours !== 0 && minutes !== 0 && seconds === 0) {
+      finalTime = `${hours} hour(s) and ${minutes} minute(s)`;
+    } else if(hours !== 0 && minutes === 0 && seconds === 0) {
+      finalTime = `${hours} hour(s)`;
+    } else if(hours !== 0 && minutes === 0 && seconds !== 0) {
+      finalTime = `${hours} hour(s) and ${seconds} second(s)`;
+    } else if(hours === 0 && minutes !== 0 && seconds !== 0) {
+      finalTime = `${minutes} minute(s) and ${seconds} second(s)`;
+    } else if(hours === 0 && minutes !== 0 && seconds === 0) {
+      finalTime = `${minutes} minute(s)`;
+    } else if(hours === 0 && minutes === 0 && seconds === 0) {
+      finalTime = `Less than a second`;
+    } else if(hours === 0 && minutes === 0 && seconds !== 0) {
+      finalTime = `${seconds} second(s)`;
+    } else {
+      finalTime = '`You should not see this message, contact Sans ASAP!!!`';
+    }
 
-		data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
+		data.push(`**Cooldown:** ${finalTime}`);
 
 		const embed4 = new Discord.RichEmbed()
 		.setColor(color.blue)
