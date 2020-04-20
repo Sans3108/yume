@@ -7,8 +7,8 @@
     "node": "10.x"
   },
   "scripts": {
-    "start": "node bot.js",
-    "astart": "pm2 start bot.js --merge-logs --time"
+    "node-start": "node bot.js",
+    "start": "pm2 start bot.js --merge-logs --time"
   },
   "author": "Sans",
   "license": "ISC",
