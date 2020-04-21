@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 //A hella ot of variables goddamnit xd
 const Discord = require("discord.js");
@@ -6,6 +6,8 @@ const { ownerID } = require("./config.json");
 const { prefix } = require("./prefix.json");
 const fs = require("fs");
 const db = require("quick.db");
+const _ = require('underscore-node');
+const f = require("./functions.js");
 
 const noLog = require("./excluded-channels.js");
 
@@ -27,7 +29,7 @@ const MsgLog = true; //switch on and off the message logger
 const devMode = false; //turn on and off dev mode, no one other than the owner can use commands
 
 //let color = hexColor();
-let color = require('./colors.json');
+let color = require("./colors.json");
 
 //random number from 1 to 3
 function number() {
@@ -158,11 +160,8 @@ bot.on("message", message => {
   //responses ---------------------------------------------------------------------------------------------------------------------------------------------
 
   //emotes
-  const pout = bot.emojis.find(emoji => emoji.name === "02pout");
   const blue_soul = bot.emojis.find(emoji => emoji.name === "blue_soul");
   const xing = bot.emojis.find(emoji => emoji.name === "xing");
-  const rifle = bot.emojis.find(emoji => emoji.name === "rifle");
-  const jojosfx = bot.emojis.find(emoji => emoji.name === "jojosfx");
 
   //embeds
   const emb1 = new Discord.RichEmbed()
@@ -178,75 +177,15 @@ bot.on("message", message => {
     .setDescription("_You're gonna have a bad time..._");
 
   const emb4 = new Discord.RichEmbed()
-    .setColor("#990000")
-    .setDescription("**Pizza will haunt you.** :ghost: :pizza:");
-
-  const emb5 = new Discord.RichEmbed()
     .setColor("#003dbf")
     .setDescription(
       "You dare summon me, the one who wields the power of stars?" + xing
     );
 
-  //Free to use
-  const emb6 = new Discord.RichEmbed()
-    .setColor(color.orange)
-    .setDescription(`Sample text`);
-
-  const emb8 = new Discord.RichEmbed()
-    .setColor("#cf1e25")
-    .setDescription(`${message.author} I'm gonna invade you.`);
-
-  const emb9 = new Discord.RichEmbed().setDescription(
-    `_Golden wind starts playing..._`
-  );
-
-  //function
-  function hasPing(id) {
-    let v;
-    if (
-      message.content.includes(`<@${id}>`) ||
-      message.content.includes(`<@!${id}>`)
-    ) {
-      v = true;
-    } else {
-      v = false;
-    }
-
-    return v;
-  }
-
   //responses
 
   if (message.content.toLowerCase() === "no u") {
     message.channel.send("no u");
-  }
-
-  if (
-    hasPing("366536353418182657") &&
-    message.author.id !== "366536353418182657"
-  ) {
-    const nr = number();
-    message.react(blue_soul);
-
-    if (nr === "1") {
-      message.channel.send(emb1);
-    } else if (nr === "2") {
-      message.channel.send(emb2);
-    } else if (nr === "3") {
-      message.channel.send(emb3);
-    }
-  }
-
-  if (
-    hasPing("489901090603663400") &&
-    message.author.id !== "489901090603663400"
-  ) {
-    const nr = number();
-    if (nr === "1" || nr === "3") {
-      message.channel.send("Togoctober standing by");
-    } else if (nr === "2") {
-      message.channel.send(`${message.author} HMS TOG enroute`);
-    }
   }
 
   if (
@@ -263,39 +202,41 @@ bot.on("message", message => {
       message.channel.send(`Hey! ${message.author}`);
     }
   }
+  
+  if (f.hasPing("366536353418182657", message)) {
+    const nr = number();
+    message.react(blue_soul);
 
-  if (
-    hasPing("238717249626570753") &&
-    message.author.id !== "238717249626570753"
-  ) {
-    message.react("👻");
-    message.react("🍕");
+    if (nr === "1") {
+      message.channel.send(emb1);
+    } else if (nr === "2") {
+      message.channel.send(emb2);
+    } else if (nr === "3") {
+      message.channel.send(emb3);
+    }
+  }
+
+  if (f.hasPing("143160118090006530", message)) {
+    message.react(xing);
     message.channel.send(emb4);
   }
 
-  if (
-    hasPing("143160118090006530") &&
-    message.author.id !== "143160118090006530"
-  ) {
-    message.react(xing);
-    message.channel.send(emb5);
-  }
-
-  if (
-    hasPing("258872670723112960") &&
-    message.author.id !== "258872670723112960"
-  ) {
-    message.react(rifle);
-    message.channel.send(emb8);
-  }
-
-  if (
-    hasPing("431070484889862144") &&
-    message.author.id !== "431070484889862144"
-  ) {
-    message.react(jojosfx);
-    message.channel.send(emb9);
-  }
+  let resp = db.fetch("responses");
+  let idList = message.mentions.members.map(u => u.user.id);
+  
+  let matches = _.intersection(resp.map(o => o.id), idList)
+  
+  matches.forEach(function(entry) {
+    let r = db.fetch('responses');
+    let obj = r.find(o => o.id === entry)
+    
+    if (f.hasPing(entry, message)) {
+      let e = new Discord.RichEmbed()
+        .setDescription(obj.text);
+      
+      message.channel.send(e);
+    }
+  });
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -313,7 +254,7 @@ bot.on("message", message => {
     bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
 
   if (!command) return message.channel.send(embed2);
-  
+
   if (command.ownerOnly && message.author.id !== ownerID)
     return message.channel.send(embed4);
 
@@ -355,27 +296,27 @@ bot.on("message", message => {
       let r1 = timeLeft % 3600;
       let minutes = Math.floor(r1 / 60);
       let seconds = Math.floor(r1 % 60);
-      
+
       let finalTime;
-      
-      if(hours !== 0 && minutes !== 0 && seconds !== 0) {
+
+      if (hours !== 0 && minutes !== 0 && seconds !== 0) {
         finalTime = `${hours} hour(s), ${minutes} minute(s) and ${seconds} second(s)`;
-      } else if(hours !== 0 && minutes !== 0 && seconds === 0) {
+      } else if (hours !== 0 && minutes !== 0 && seconds === 0) {
         finalTime = `${hours} hour(s) and ${minutes} minute(s)`;
-      } else if(hours !== 0 && minutes === 0 && seconds === 0) {
+      } else if (hours !== 0 && minutes === 0 && seconds === 0) {
         finalTime = `${hours} hour(s)`;
-      } else if(hours !== 0 && minutes === 0 && seconds !== 0) {
+      } else if (hours !== 0 && minutes === 0 && seconds !== 0) {
         finalTime = `${hours} hour(s) and ${seconds} second(s)`;
-      } else if(hours === 0 && minutes !== 0 && seconds !== 0) {
+      } else if (hours === 0 && minutes !== 0 && seconds !== 0) {
         finalTime = `${minutes} minute(s) and ${seconds} second(s)`;
-      } else if(hours === 0 && minutes !== 0 && seconds === 0) {
+      } else if (hours === 0 && minutes !== 0 && seconds === 0) {
         finalTime = `${minutes} minute(s)`;
-      } else if(hours === 0 && minutes === 0 && seconds === 0) {
+      } else if (hours === 0 && minutes === 0 && seconds === 0) {
         finalTime = `${seconds} second(s)`;
-      } else if(hours === 0 && minutes === 0 && seconds !== 0) {
+      } else if (hours === 0 && minutes === 0 && seconds !== 0) {
         finalTime = `${seconds} second(s)`;
       } else {
-        finalTime = '`You should not see this message, contact Sans ASAP!!!`';
+        finalTime = "`You should not see this message, contact Sans ASAP!!!`";
       }
 
       let cooldownembed = new Discord.RichEmbed()
@@ -425,7 +366,7 @@ bot.on("messageUpdate", (oldMessage, newMessage) => {
         );
 
         let eChannel = newMessage.guild.channels.find(
-          chn => chn.id === "625609556252295168"
+          chn => chn.name === "message-log"
         );
 
         if (oldMessage.content.length > 1024) {
@@ -486,4 +427,3 @@ console.log(`${str.slice(0, str.length - 5)} && ${str.slice(5)}`)
 console.log(str)
 }
 */
-

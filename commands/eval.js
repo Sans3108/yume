@@ -8,6 +8,7 @@ function clean(text) {
 const Discord = require("discord.js");
 const db = require('quick.db');
 const f = require('../functions.js');
+const _ = require('underscore-node');
 
 module.exports = {
 	name: 'eval',
@@ -15,7 +16,7 @@ module.exports = {
   cooldown: 0.1,
 	execute(message, args, bot, color) {
 
-		try {
+	  try {
 			let code = args.join(" ");
 			if (code.startsWith('```js') && code.endsWith('```')) {
 				code = code.slice(5, -3);

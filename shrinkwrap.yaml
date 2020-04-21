@@ -4,6 +4,7 @@ dependencies:
   file-system: 2.2.2
   pm2: 4.2.3
   quick.db: 7.1.1
+  underscore-node: 0.1.2
 packages:
   /@opencensus/core/0.0.8:
     dependencies:
@@ -1710,6 +1711,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-UIEXBNeYmKptWH6z8ZnqTeS8fV74zG0/eRU9VGkpzz+LIJNs8W/zM/L+7ctCkRrgbNnnR0xxw4bKOr0cW0N0Og==
+  /underscore-node/0.1.2:
+    dev: false
+    resolution:
+      integrity: sha1-DOjHpXN8ptyOcTFdxNokaUnUgng=
   /unpipe/1.0.0:
     dev: false
     engines:
@@ -1809,3 +1814,4 @@ specifiers:
   file-system: ^2.2.2
   pm2: ^4.2.3
   quick.db: ^7.1.1
+  underscore-node: ^0.1.2

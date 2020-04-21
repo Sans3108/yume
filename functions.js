@@ -1,3 +1,5 @@
+//const f = require('../functions.js');
+
 module.exports = {
   getIDfromMention: function(a) {
     if (typeof a !== typeof "string")
@@ -16,5 +18,22 @@ module.exports = {
   },
   arrayContains: function(needle, arrhaystack) {
     return arrhaystack.includes(needle);
+  },
+  hasPing: function(id, m) {
+    if(!id || !m) return new Error('Missing parameters!');
+    
+    let v;
+    
+    if (m.content.includes(`<@${id}>`) || m.content.includes(`<@!${id}>`)) {
+      if (m.author.id !== id) {
+        v = true;
+      } else {
+        v = false;
+      }
+    } else {
+      v = false;
+    }
+
+    return v;
   }
 };

@@ -117,6 +117,15 @@ module.exports = [
       
       channel.send('<@143160118090006530> & <@366536353418182657>', { embed: emb3 });
     }
+  },
+  {
+    name: "Custom Response",
+    price: 0,
+    uid: 'i8',
+    description: "Get yourself a custom response! (The bot will reply to anyone who tags you with it)",
+    execute: function(a, b) {
+      //to code later
+    }
   }
 ];
 //params in order: message, bot
