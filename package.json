@@ -16,6 +16,7 @@
     "discord.js": "11.5.1",
     "dotenv": "^8.2.0",
     "file-system": "^2.2.2",
+    "is-hexcolor": "^1.0.0",
     "pm2": "^4.2.3",
     "quick.db": "^7.1.1",
     "underscore-node": "^0.1.2"

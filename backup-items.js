@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 let color = require('./colors.json');
 const { prefix } = require('./prefix.json');
 const isHexcolor = require('is-hexcolor');
-const items = require('./backup-items.js');
+const items = require('./items.js');
 const db = require("quick.db");
 
 module.exports = [
