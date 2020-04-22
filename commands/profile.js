@@ -61,6 +61,8 @@ module.exports = {
         .setTitle(`__${b.displayName}'s profile:__`)
         .addField("Balance", `${data.bal}${db.fetch("cfg").currency}`)
         .addField("Started playing at", `${data.joinedAt}`);
+      
+      let responses = db.fetch('responses')
 
       message.channel.send(emb4);
     } else {

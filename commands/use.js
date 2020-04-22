@@ -28,7 +28,7 @@ module.exports = {
     if(f.arrayContains(args.join(' ').toLowerCase(), data.inventory.map(a => a.name.toLowerCase()))) {
       let item = items.find(i => i.name.toLowerCase() === args.join(' ').toLowerCase());
       //params in order: message, bot 
-      item.execute(message, bot);
+      item.execute(message, bot, args);
       
       let index = data.inventory.indexOf(item);
       data.inventory.splice(index, 1);

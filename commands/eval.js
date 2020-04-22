@@ -9,6 +9,7 @@ const Discord = require("discord.js");
 const db = require('quick.db');
 const f = require('../functions.js');
 const _ = require('underscore-node');
+const isHexcolor = require('is-hexcolor');
 
 module.exports = {
 	name: 'eval',

@@ -221,22 +221,27 @@ bot.on("message", message => {
     message.channel.send(emb4);
   }
 
-  let resp = db.fetch("responses");
-  let idList = message.mentions.members.map(u => u.user.id);
-  
-  let matches = _.intersection(resp.map(o => o.id), idList)
-  
-  matches.forEach(function(entry) {
-    let r = db.fetch('responses');
-    let obj = r.find(o => o.id === entry)
+  if(db.fetch('responses') !== null) {
+    let resp = db.fetch("responses");
+    let resparr = resp.map(o => o.id);
     
-    if (f.hasPing(entry, message)) {
-      let e = new Discord.RichEmbed()
-        .setDescription(obj.text);
+    let idList = message.mentions.members.map(u => u.user.id);
+  
+    let matches = _.intersection(resparr, idList)
+  
+    matches.forEach(function(entry) {
+      let r = db.fetch('responses');
+      let obj = r.find(o => o.id === entry)
+    
+      if (f.hasPing(entry, message)) {
+        let e = new Discord.RichEmbed()
+          .setColor(obj.col)
+          .setDescription(obj.text);
       
-      message.channel.send(e);
-    }
-  });
+        message.channel.send(e);
+      }
+    });
+  }
 
   //--------------------------------------------------------------------------------------------------------------------------------------------------------
 
