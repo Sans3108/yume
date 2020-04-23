@@ -221,7 +221,7 @@ bot.on("message", message => {
     message.channel.send(emb4);
   }
 
-  if(db.fetch('responses') !== null) {
+  if(message.channel.type === "text" && db.fetch('responses') !== null) {
     let resp = db.fetch("responses");
     let resparr = resp.map(o => o.id);
     
