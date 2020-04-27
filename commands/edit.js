@@ -75,7 +75,7 @@ module.exports = {
       
       return message.channel.send(`Custom Response color set!`, {embed: emb2});
     } else if (args[0].toLowerCase() === "text") {
-      let t = args[1];
+      let t = args.slice(1).join(' ');
 
       let emb1 = new Discord.RichEmbed()
         .setColor(color.red)
