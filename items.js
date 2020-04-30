@@ -110,7 +110,7 @@ module.exports = [
   },
   {
     name: "Discord Nitro Classic",
-    price: 1250,
+    price: 1500,
     uid: 'i7',
     description: "Buy yourself Discord Nitro Classic gift for 1 month! Sponsored by <@143160118090006530>!\n(After you use this item you will be contacted by Croma or Sans to receive the gift.)",
     execute: function(a, b) {
