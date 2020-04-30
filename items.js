@@ -89,7 +89,7 @@ module.exports = [
       channel.send('<@&479704157729849348>', { embed: emb3 });
     }
   },
-  {
+  /*{
     name: "7500 Kakera",
     price: 500,
     uid: 'i6',
@@ -105,7 +105,7 @@ module.exports = [
       
       channel.send('<_@&479704157729849348>', { embed: emb3 });
     }
-  },
+  },*/
   {
     name: "10000 Kakera",
     price: 850,
