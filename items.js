@@ -108,7 +108,7 @@ module.exports = [
   },
   {
     name: "10000 Kakera",
-    price: 500,
+    price: 850,
     uid: 'i9',
     description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 35% more kakera!",
     execute: function(a, b) {
