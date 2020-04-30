@@ -7,6 +7,7 @@ module.exports = {
   description: "Daily credit! [1 - 50/d]",
   cooldown: 86400,
   guildOnly: true,
+  shop: true,
   execute(message, args, bot, color) {
     try {
       let user = db.fetch(message.author.id);

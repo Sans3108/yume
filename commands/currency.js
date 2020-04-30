@@ -8,6 +8,7 @@ module.exports = {
   cooldown: 3,
   ownerOnly: true,
   args: true,
+  shop: true,
   guildOnly: true,
   execute(message, args, bot, color) {
       let cur = db.fetch('cfg');

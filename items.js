@@ -69,7 +69,7 @@ module.exports = [
         .setColor(color.blue)
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 3150 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 3150\``);
       
-      channel.send('<__@&479704157729849348>', { embed: emb3 });
+      channel.send('<@&479704157729849348>', { embed: emb3 });
     }
   },
   {
@@ -89,7 +89,7 @@ module.exports = [
       channel.send('<@&479704157729849348>', { embed: emb3 });
     }
   },
-  /*{
+  {
     name: "7500 Kakera",
     price: 500,
     uid: 'i6',
@@ -103,9 +103,9 @@ module.exports = [
         .setColor(color.blue)
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 9370 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 9370\``);
       
-      channel.send('<_@&479704157729849348>', { embed: emb3 });
+      channel.send('<@&479704157729849348>', { embed: emb3 });
     }
-  },*/
+  },
   {
     name: "10000 Kakera",
     price: 850,
@@ -120,7 +120,7 @@ module.exports = [
         .setColor(color.blue)
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 13500 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 13500\``);
       
-      channel.send('<__.@&479704157729849348>', { embed: emb3 });
+      channel.send('<.@&479704157729849348>', { embed: emb3 });
     }
   },
   {

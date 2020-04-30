@@ -8,6 +8,7 @@ module.exports = {
   aliases: ['bal'],
   cooldown: 3,
   guildOnly: true,
+  shop: true,
   execute(message, args, bot, color) {
     try {
       let user = db.fetch(message.author.id)

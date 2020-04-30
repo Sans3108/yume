@@ -10,6 +10,7 @@ module.exports = {
   aliases: ["stocks"],
   cooldown: 3,
   ownerOnly: true,
+  shop: true,
   guildOnly: true,
   execute(message, args, bot, color) {
     

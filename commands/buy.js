@@ -10,6 +10,7 @@ module.exports = {
   usage: "[item name]",
   cooldown: 3,
   args: true,
+  shop: true,
   guildOnly: true,
   execute(message, args, bot, color) {
     if (db.fetch(message.author.id) === null) {

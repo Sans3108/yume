@@ -9,6 +9,7 @@ module.exports = {
   usage: "<Mention || ID>",
   cooldown: 1,
   guildOnly: true,
+  shop: true,
   async execute(message, args, bot, color) {
     if (args[0]) {
       //user specified

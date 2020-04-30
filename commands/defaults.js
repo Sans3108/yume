@@ -7,6 +7,7 @@ module.exports = {
   cooldown: 3,
   ownerOnly: true,
   guildOnly: true,
+  shop: true,
   execute(message, args, bot, color) {
     db.delete('cfg');
     db.set('cfg', { currency: default_currency });

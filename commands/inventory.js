@@ -8,6 +8,7 @@ module.exports = {
   cooldown: 3,
   aliases: ["inv"],
   guildOnly: true,
+  shop: true,
   execute(message, args, bot, color) {
     if (db.fetch(message.author.id) === null) {
       db.set(message.author.id, {

@@ -11,6 +11,7 @@ module.exports = {
   cooldown: 3,
   ownerOnly: true,
   guildOnly: true,
+  shop: true,
   execute(message, args, bot, color) {
 
     let emb1 = new Discord.RichEmbed()

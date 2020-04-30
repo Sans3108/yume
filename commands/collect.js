@@ -7,6 +7,7 @@ module.exports = {
   description: "Collect some credit! [3 - 25/h]",
   aliases: ['work'],
   cooldown: 3600,
+  shop: true,
   guildOnly: true,
   execute(message, args, bot, color) {
     try {

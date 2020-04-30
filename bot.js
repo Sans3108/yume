@@ -25,8 +25,11 @@ for (const file of commandFiles) {
 
 const cooldowns = new Discord.Collection();
 
+
+//Switches
 const MsgLog = true; //switch on and off the message logger
 const devMode = true; //turn on and off dev mode, no one other than the owner can use commands
+const shopStatus = false; //enables and disables all shop commands except for the owner
 
 //let color = hexColor();
 let color = require("./colors.json");
@@ -268,6 +271,13 @@ bot.on("message", message => {
 
   if (command.guildOnly && message.channel.type !== "text") {
     return message.channel.send(embed3);
+  }
+  
+  if(command.shop && !shopStatus) {
+    let erremb = new Discord.RichEmbed()
+      .setColor(color.red)
+      .setDescription('Command disabled.');
+    if(message.author.id !== ownerID) return message.channel.send(erremb);
   }
 
   if (command.args && !args.length) {

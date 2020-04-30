@@ -10,6 +10,7 @@ module.exports = {
   cooldown: 3,
   ownerOnly: true,
   guildOnly: true,
+  shop: true,
   args: true,
   async execute(message, args, bot, color) {
     let idORmention = false;

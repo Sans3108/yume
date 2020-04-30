@@ -13,6 +13,7 @@ module.exports = {
   ownerOnly: true,
   args: true,
   guildOnly: true,
+  shop: true,
   execute(message, args, bot, color) {
     if (db.fetch(message.author.id) === null) {
       db.set(message.author.id, {

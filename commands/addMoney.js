@@ -11,6 +11,7 @@ module.exports = {
   ownerOnly: true,
   guildOnly: true,
   args: true,
+  shop: true,
   async execute(message, args, bot, color) {
     let idORmention = false;
     if (message.guild.member(args[0])) {
