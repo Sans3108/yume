@@ -28,7 +28,7 @@ const cooldowns = new Discord.Collection();
 
 //Switches
 const MsgLog = true; //switch on and off the message logger
-const devMode = true; //turn on and off dev mode, no one other than the owner can use commands
+const devMode = false; //turn on and off dev mode, no one other than the owner can use commands
 const shopStatus = false; //enables and disables all shop commands except for the owner
 
 //let color = hexColor();
