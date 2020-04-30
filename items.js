@@ -107,6 +107,23 @@ module.exports = [
     }
   },
   {
+    name: "10000 Kakera",
+    price: 500,
+    uid: 'i9',
+    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 35% more kakera!",
+    execute: function(a, b) {
+      if (!a) return new Error("No message object provided!");
+      if (!b) return new Error("No bot object provided!");
+      
+      let channel = b.channels.find(ch => ch.id === '605067577688981546');
+      let emb3 = new Discord.RichEmbed()
+        .setColor(color.blue)
+        .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 13500 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 13500\``);
+      
+      channel.send('<__.@&479704157729849348>', { embed: emb3 });
+    }
+  },
+  {
     name: "Discord Nitro Classic",
     price: 1500,
     uid: 'i7',
