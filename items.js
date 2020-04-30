@@ -98,8 +98,6 @@ module.exports = [
       if (!a) return new Error("No message object provided!");
       if (!b) return new Error("No bot object provided!");
       
-      return new Error('test error')
-      
       let channel = b.channels.find(ch => ch.id === '605067577688981546');
       let emb3 = new Discord.RichEmbed()
         .setColor(color.blue)
@@ -130,7 +128,7 @@ module.exports = [
     price: 300,
     uid: 'i8',
     description: 'Get yourself a custom response! (The bot will reply with it to anyone who tags you)',
-    execute: function(a, b, c) {
+    execute: function(a, b) {
       
       
       const filter = m => m.author.id === a.author.id;
@@ -213,7 +211,7 @@ module.exports = [
     }
   }
 ];
-//params in order: message, bot, args
+//params in order: message, bot
 
 //item example
 /*
