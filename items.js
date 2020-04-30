@@ -69,7 +69,7 @@ module.exports = [
         .setColor(color.blue)
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 3150 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 3150\``);
       
-      channel.send('<@&479704157729849348>', { embed: emb3 });
+      channel.send('<__@&479704157729849348>', { embed: emb3 });
     }
   },
   {
@@ -103,7 +103,7 @@ module.exports = [
         .setColor(color.blue)
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 9370 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 9370\``);
       
-      channel.send('<@&479704157729849348>', { embed: emb3 });
+      channel.send('<_@&479704157729849348>', { embed: emb3 });
     }
   },
   {
