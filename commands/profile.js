@@ -62,8 +62,6 @@ module.exports = {
         .setTitle(`__${b.displayName}'s profile:__`)
         .addField("Balance", `${data.bal}${db.fetch("cfg").currency}`)
         .addField("Started playing at", `${data.joinedAt}`);
-      
-      let responses = db.fetch('responses')
 
       message.channel.send(emb4);
     } else {
@@ -79,13 +77,6 @@ module.exports = {
       let data = db.fetch(message.author.id);
       let a = await bot.fetchUser(message.author.id);
       let b = message.guild.member(message.author.id);
-
-      let inv;
-      if (data.inventory.length[0]) {
-        inv = data.inventory.map(a => a.name).join(", ");
-      } else {
-        inv = "_<empty>_";
-      }
 
       let emb5 = new Discord.RichEmbed()
         .setColor(color.blue)
