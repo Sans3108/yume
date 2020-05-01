@@ -107,8 +107,8 @@ module.exports = [
     }
   },
   {
-    name: "10000 Kakera",
-    price: 850,
+    name: "10500 Kakera",
+    price: 700,
     uid: 'i9',
     description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after buying this item.)\nWith this purchase you get 35% more kakera!",
     execute: function(a, b) {
@@ -118,9 +118,9 @@ module.exports = [
       let channel = b.channels.find(ch => ch.id === '605067577688981546');
       let emb3 = new Discord.RichEmbed()
         .setColor(color.blue)
-        .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 13500 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 13500\``);
+        .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 14175 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 14175\``);
       
-      channel.send('<.@&479704157729849348>', { embed: emb3 });
+      channel.send('<@&479704157729849348>', { embed: emb3 });
     }
   },
   {
