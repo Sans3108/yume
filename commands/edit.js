@@ -87,7 +87,7 @@ module.exports = {
         .setColor(db.fetch('responses').find(i => i.id === message.author.id).col)
         .setDescription(db.fetch('responses').find(i => i.id === message.author.id).text);
       
-      return message.channel.send(`Custom Response color set!`, {embed: emb3});
+      return message.channel.send(`Custom Response text set!`, {embed: emb3});
     } else return message.channel.send(emb1);
   }
 };
