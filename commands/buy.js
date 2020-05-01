@@ -16,8 +16,7 @@ module.exports = {
     if (db.fetch(message.author.id) === null) {
       db.set(message.author.id, {
         bal: 0,
-        joinedAt: Date(Date.now()).slice(4, -47),
-        inventory: []
+        joinedAt: Date(Date.now()).slice(4, -47)
       });
     }
     
@@ -39,12 +38,7 @@ module.exports = {
         .setColor(color.red)
         .setDescription(`You already have a custom response set!\nTo edit it use the \`${prefix}edit\` command!`);
       
-      let customEmb2 = new Discord.RichEmbed()
-        .setColor(color.red)
-        .setDescription(`You already have a custom response in your inventory!\nTo use it use the \`${prefix}use\` command!`);
-      
       if(item.name === 'Custom Response' && it !== null) return message.channel.send(customEmb);
-      if(f.arrayContains('Custom Response'.toLowerCase(), data.inventory.map(a => a.name.toLowerCase()))) return message.channel.send(customEmb2);
       //-----------------------------------------------------------------------------------
       
       let emb4 = new Discord.RichEmbed()
@@ -57,16 +51,17 @@ module.exports = {
           .setDescription(`You need ${item.price - data.bal}${db.fetch('cfg').currency} more to buy \`${item.name}\`!`);
       
         if(data.bal >= item.price) {
-          data.inventory.push(item);
           data.bal = data.bal - item.price;
           
           db.set(message.author.id, data);
         
           let emb3 = new Discord.RichEmbed()
             .setColor(color.green)
-            .setDescription(`You bought \`${item.name}\` for ${item.price}${db.fetch('cfg').currency}! Check your inventory!`);
-          return message.channel.send(emb3);
+            .setDescription(`You bought \`${item.name}\` for ${item.price}${db.fetch('cfg').currency}!`);
+          return message.channel.send(emb3) && item.execute(message, bot) && message.react('✅');
+          
         } else return message.channel.send(emb2);
+        
       } else if (db.fetch(item.uid).stock > 0) {
         let emb5 = new Discord.RichEmbed()
           .setColor(color.red)
@@ -77,15 +72,15 @@ module.exports = {
           stk.stock = stk.stock - 1;
           db.set(item.uid, stk);
           
-          data.inventory.push(item);
           data.bal = data.bal - item.price;
-        
+          
           db.set(message.author.id, data);
         
           let emb6 = new Discord.RichEmbed()
             .setColor(color.green)
-            .setDescription(`You bought \`${item.name}\` for ${item.price}${db.fetch('cfg').currency}! Check your inventory!`);
-          return message.channel.send(emb6);
+            .setDescription(`You bought \`${item.name}\` for ${item.price}${db.fetch('cfg').currency}!`);
+          return message.channel.send(emb6) && item.execute(message, bot) && message.react('✅');
+          
         } else return message.channel.send(emb5);
       } else return message.channel.send(emb4);
     } else return message.channel.send(emb1);

@@ -4,7 +4,7 @@ module.exports = {
 	name: 'playing',
 	description: 'Sets the bot rich presence until the next restart.',
 	aliases: ['presence'],
-	usage: '[type] [message]',
+	usage: '[type] <url> [message]',
 	cooldown: 3,
 	//guildOnly: true,
 	ownerOnly: true,
@@ -14,7 +14,7 @@ module.exports = {
 		//embeds for the messages
 		const embed1 = new Discord.RichEmbed()
 		.setColor(color.red)
-		.setDescription(`Provide a valid rich presence type. \`\`Listening\`\` \`\`Playing\`\` \`\`Watching\`\``);
+		.setDescription(`Provide a valid rich presence type. \`\`Listening\`\` \`\`Playing\`\` \`\`Watching\`\` \`\`STREAMING\`\``);
 		const embed2 = new Discord.RichEmbed()
 		.setColor(color.red)
         .setDescription(`Provide a valid rich presence message.`);
@@ -23,9 +23,9 @@ module.exports = {
         if (!args[1]) return message.channel.send(embed2);
 
         const type = `${args[0]}`
-        const msg = `${args.slice(1).join(' ')}`
 
         if(type.toLowerCase() === 'listening') {
+          const msg = `${args.slice(1).join(' ')}`
             bot.user.setPresence({
                 game: {
                     name: `${msg}`,
@@ -38,6 +38,7 @@ module.exports = {
         message.channel.send(embed3);
 
         } else if(type.toLowerCase() === 'playing') {
+          const msg = `${args.slice(1).join(' ')}`
             bot.user.setPresence({
                 game: {
                     name: `${msg}`,
@@ -50,6 +51,7 @@ module.exports = {
         message.channel.send(embed4);
 
         } else if(type.toLowerCase() === 'watching') {
+          const msg = `${args.slice(1).join(' ')}`
             bot.user.setPresence({
                 game: {
                     name: `${msg}`,
@@ -61,6 +63,20 @@ module.exports = {
         .setDescription(`Success! Changed the bot rich presence to:\n\`\`Watching ${msg}\`\``);
         message.channel.send(embed5);
 
+        } else if(type.toLowerCase() === 'streaming') {
+          const url = `${args[1]}`
+          const msg = `${args.slice(2).join(' ')}`
+          bot.user.setPresence({
+                game: {
+                    name: `${msg}`,
+                    type: "STREAMING",
+                    url: `${url}`
+                }
+            });
+          const embed6 = new Discord.RichEmbed()
+            .setColor(color.green)
+            .setDescription(`Success! Changed the bot rich presence to:\n\`\`Streaming ${msg}\`\`\n(Url: ${url})`);
+          message.channel.send(embed6);
         } else return message.channel.send(embed1);
     },
 }

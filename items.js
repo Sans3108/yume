@@ -42,7 +42,7 @@ module.exports = [
     name: "1500 Kakera",
     price: 100,
     uid: 'i3',
-    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)",
+    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after buying this item.)",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
       if (!b) return new Error("No bot object provided!");
@@ -59,7 +59,7 @@ module.exports = [
     name: "3000 Kakera",
     price: 200,
     uid: 'i4',
-    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 5% more kakera!",
+    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after buying this item.)\nWith this purchase you get 5% more kakera!",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
       if (!b) return new Error("No bot object provided!");
@@ -76,7 +76,7 @@ module.exports = [
     name: "5250 Kakera",
     price: 350,
     uid: 'i5',
-    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 15% more kakera!",
+    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after buying this item.)\nWith this purchase you get 15% more kakera!",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
       if (!b) return new Error("No bot object provided!");
@@ -93,7 +93,7 @@ module.exports = [
     name: "7500 Kakera",
     price: 500,
     uid: 'i6',
-    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 25% more kakera!",
+    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after buying this item.)\nWith this purchase you get 25% more kakera!",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
       if (!b) return new Error("No bot object provided!");
@@ -110,7 +110,7 @@ module.exports = [
     name: "10000 Kakera",
     price: 850,
     uid: 'i9',
-    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after using this item.)\nWith this purchase you get 35% more kakera!",
+    description: "Buy Kakera for the Mudamaid bot! (You will have to wait until an admin sees the order after buying this item.)\nWith this purchase you get 35% more kakera!",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
       if (!b) return new Error("No bot object provided!");
@@ -127,7 +127,7 @@ module.exports = [
     name: "Discord Nitro Classic",
     price: 1500,
     uid: 'i7',
-    description: "Buy yourself Discord Nitro Classic gift for 1 month! Sponsored by <@143160118090006530>!\n(After you use this item you will be contacted by Croma or Sans to receive the gift.)",
+    description: "Buy yourself Discord Nitro Classic gift for 1 month! Sponsored by <@143160118090006530>!\n(After you buy this item you will be contacted asap by Croma or Sans to receive the nitro gift.)",
     execute: function(a, b) {
       if (!a) return new Error("No message object provided!");
       if (!b) return new Error("No bot object provided!");
@@ -164,10 +164,9 @@ module.exports = [
         } catch {
           let emb2 = new Discord.RichEmbed()
             .setColor(color.red)
-            .setDescription('No message recorded. (Item was used but refunded.)');
-          let item = items.find(i => i.name.toLowerCase() === this.name.toLowerCase());
+            .setDescription('No message recorded. (Item Refunded.)');
           let data = db.fetch(a.author.id);
-          data.inventory.push(item);
+          data.bal = data.bal + this.price
           db.set(a.author.id, data);
           return a.channel.send(emb2);
         }
@@ -207,10 +206,9 @@ module.exports = [
           } catch {
             let emb4 = new Discord.RichEmbed()
               .setColor(color.red)
-              .setDescription('No message recorded. (Item was used but refunded.)');
-            let item = items.find(i => i.name.toLowerCase() === this.name.toLowerCase());
+              .setDescription('No message recorded. (Item Refunded.)');
             let data = db.fetch(a.author.id);
-            data.inventory.push(item);
+            data.bal = data.bal + this.price
             db.set(a.author.id, data);
             return a.channel.send(emb4);
           }

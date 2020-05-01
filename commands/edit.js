@@ -18,8 +18,7 @@ module.exports = {
     if (db.fetch(message.author.id) === null) {
       db.set(message.author.id, {
         bal: 0,
-        joinedAt: Date(Date.now()).slice(4, -47),
-        inventory: []
+        joinedAt: Date(Date.now()).slice(4, -47)
       });
     }
 
@@ -41,13 +40,6 @@ module.exports = {
       .setDescription(`You don't have a custom response set!`);
 
     if (it === null) return message.channel.send(customEmb);
-    if (
-      f.arrayContains(
-        "Custom Response".toLowerCase(),
-        data.inventory.map(a => a.name.toLowerCase())
-      )
-    )
-      return message.channel.send(customEmb);
     //-----------------------------------------------------------------------------------
 
     if (args[0].toLowerCase() === "color") {

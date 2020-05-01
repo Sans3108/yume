@@ -72,8 +72,7 @@ module.exports = {
       if (db.fetch(message.author.id) === null) {
         db.set(message.author.id, {
           bal: 0,
-          joinedAt: Date(Date.now()).slice(4, -47),
-          inventory: []
+          joinedAt: Date(Date.now()).slice(4, -47)
         });
       }
 
@@ -94,8 +93,7 @@ module.exports = {
         .setThumbnail(a.displayAvatarURL)
         .setTitle(`__Your profile:__`)
         .addField("Balance", `${data.bal}${db.fetch("cfg").currency}`)
-        .addField("Started playing at", `${data.joinedAt}`)
-        .setFooter(`Tip: Check your inventory with '${prefix}inventory'`)
+        .addField("Started playing at", `${data.joinedAt}`);
 
       message.channel.send(emb5);
     }

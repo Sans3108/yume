@@ -23,7 +23,7 @@ module.exports = {
 
       message.channel.send(emb1);
     } catch {
-      db.set(message.author.id, { bal: 0, joinedAt: Date(Date.now()).slice(4, -47), inventory: [] });
+      db.set(message.author.id, { bal: 0, joinedAt: Date(Date.now()).slice(4, -47) });
       let user = db.fetch(message.author.id);
       
       let rand = Math.floor(f.randomNumber(1, 50));

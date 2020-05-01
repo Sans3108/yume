@@ -69,7 +69,7 @@ module.exports = {
       
       message.channel.send(emb3);
     } catch {
-      db.set(user, { bal: 0, joinedAt: Date(Date.now()).slice(4, -47), inventory: [] });
+      db.set(user, { bal: 0, joinedAt: Date(Date.now()).slice(4, -47) });
       
       let data = db.fetch(user);
       data.bal = data.bal + parseInt(args[1], 10);

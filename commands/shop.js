@@ -15,8 +15,7 @@ module.exports = {
     if (db.fetch(message.author.id) === null) {
       db.set(message.author.id, {
         bal: 0,
-        joinedAt: Date(Date.now()).slice(4, -47),
-        inventory: []
+        joinedAt: Date(Date.now()).slice(4, -47)
       });
     }
     
