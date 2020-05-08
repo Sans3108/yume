@@ -10,7 +10,6 @@ module.exports = {
   description: `Edit your custom response!`,
   cooldown: 3,
   usage: "[color || text] [new value]",
-  ownerOnly: true,
   args: true,
   guildOnly: true,
   shop: true,
