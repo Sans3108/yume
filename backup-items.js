@@ -189,9 +189,16 @@ module.exports = [
         
             let emb5 = new Discord.RichEmbed()
               .setColor(color.red)
-              .setDescription('Invalid HEX color code!\nPlease use this Hex color picker to choose a valid code: https://www.google.com/search?q=color+picker');
+              .setDescription('Invalid HEX color code!\nPlease use this Hex color picker to choose a valid code: https://www.google.com/search?q=color+picker')
+              .setFooter('(Item refunded.)');
         
-            if(!isHexcolor(c)) return a.channel.send(emb5);
+            if(!isHexcolor(c)) {
+              let data = db.fetch(a.author.id);
+              data.bal = data.bal + this.price
+              db.set(a.author.id, data);
+              
+              return a.channel.send(emb5);
+            }
         
             let emb6 = new Discord.RichEmbed()
               .setColor(c)
