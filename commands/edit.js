@@ -62,6 +62,7 @@ module.exports = {
       db.set('responses', newr);
       
       let emb2 = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setColor(db.fetch('responses').find(i => i.id === message.author.id).col)
         .setDescription(db.fetch('responses').find(i => i.id === message.author.id).text);
       
@@ -83,6 +84,7 @@ module.exports = {
       db.set('responses', newr);
       
       let emb3 = new Discord.RichEmbed()
+        .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setColor(db.fetch('responses').find(i => i.id === message.author.id).col)
         .setDescription(db.fetch('responses').find(i => i.id === message.author.id).text);
       
