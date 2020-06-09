@@ -232,12 +232,14 @@ bot.on("message", message => {
   
     let matches = _.intersection(resparr, idList)
   
-    matches.forEach(function(entry) {
+    matches.forEach(async function(entry) {
       let r = db.fetch('responses');
       let obj = r.find(o => o.id === entry)
     
       if (f.hasPing(entry, message)) {
+        let u = await bot.fetchUser(obj.id);
         let e = new Discord.RichEmbed()
+          .setAuthor(u.username, u.displayAvatarURL)
           .setColor(obj.col)
           .setDescription(obj.text);
       
