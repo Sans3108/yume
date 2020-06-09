@@ -177,7 +177,7 @@ module.exports = [
       
         a.channel.send(emb3);
         
-        a.channel.awaitMessages(filter, {max: 1, time: 15000}).then(collected => {
+        a.channel.awaitMessages(filter, {max: 1, time: 15000}).then(async collected => {
           let c;
           
           try {
@@ -199,8 +199,11 @@ module.exports = [
               
               return a.channel.send(emb5);
             }
-        
+            
+            let usr = await b.fetchUser(a.author.id);
+            
             let emb6 = new Discord.RichEmbed()
+              .setAuthor(usr.username, usr.displayAvatarURL)
               .setColor(c)
               .setDescription(t);
             
