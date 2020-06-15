@@ -53,6 +53,11 @@ module.exports = [
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 1500 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 1500\``);
       
       channel.send('<@&479704157729849348>', { embed: emb3 });
+      
+      let emb7 = new Discord.RichEmbed()
+        .setColor(color.blue)
+        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+      a.channel.send(emb7);
     }
   },
   {
@@ -70,6 +75,11 @@ module.exports = [
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 3150 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 3150\``);
       
       channel.send('<@&479704157729849348>', { embed: emb3 });
+      
+      let emb8 = new Discord.RichEmbed()
+        .setColor(color.blue)
+        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+      a.channel.send(emb8);
     }
   },
   {
@@ -87,6 +97,11 @@ module.exports = [
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 6030 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 6030\``);
       
       channel.send('<@&479704157729849348>', { embed: emb3 });
+      
+      let emb9 = new Discord.RichEmbed()
+        .setColor(color.blue)
+        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+      a.channel.send(emb9);
     }
   },
   {
@@ -104,6 +119,11 @@ module.exports = [
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 9370 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 9370\``);
       
       channel.send('<@&479704157729849348>', { embed: emb3 });
+      
+      let emb10 = new Discord.RichEmbed()
+        .setColor(color.blue)
+        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+      a.channel.send(emb10);
     }
   },
   {
@@ -121,6 +141,11 @@ module.exports = [
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought 14175 Kakera!\nUse this command to fulfill their order: \`$givescrap ${a.author} 14175\``);
       
       channel.send('<@&479704157729849348>', { embed: emb3 });
+      
+      let emb11 = new Discord.RichEmbed()
+        .setColor(color.blue)
+        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+      a.channel.send(emb11);
     }
   },
   {
@@ -138,6 +163,11 @@ module.exports = [
         .setDescription(`User with ID: ${a.author.id}\nTag: ${a.author.tag}\nHas bought Discord Nitro!`);
       
       channel.send('<@143160118090006530> & <@366536353418182657>', { embed: emb3 });
+      
+      let emb12 = new Discord.RichEmbed()
+        .setColor(color.blue)
+        .setDescrption('<@143160118090006530> or <@366536353418182657> have been alerted, feel free to contact them to claim or wait for one of them to DM you.');
+      a.channel.send(emb12);
     }
   },
   {
