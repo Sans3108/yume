@@ -56,7 +56,7 @@ module.exports = [
       
       let emb7 = new Discord.RichEmbed()
         .setColor(color.blue)
-        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+        .setDescription('Admins have been alerted, please wait until they see your order and complete it.');
       a.channel.send(emb7);
     }
   },
@@ -78,7 +78,7 @@ module.exports = [
       
       let emb8 = new Discord.RichEmbed()
         .setColor(color.blue)
-        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+        .setDescription('Admins have been alerted, please wait until they see your order and complete it.');
       a.channel.send(emb8);
     }
   },
@@ -100,7 +100,7 @@ module.exports = [
       
       let emb9 = new Discord.RichEmbed()
         .setColor(color.blue)
-        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+        .setDescription('Admins have been alerted, please wait until they see your order and complete it.');
       a.channel.send(emb9);
     }
   },
@@ -122,7 +122,7 @@ module.exports = [
       
       let emb10 = new Discord.RichEmbed()
         .setColor(color.blue)
-        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+        .setDescription('Admins have been alerted, please wait until they see your order and complete it.');
       a.channel.send(emb10);
     }
   },
@@ -144,7 +144,7 @@ module.exports = [
       
       let emb11 = new Discord.RichEmbed()
         .setColor(color.blue)
-        .setDescrption('Admins have been alerted, please wait until they see your order and complete it.');
+        .setDescription('Admins have been alerted, please wait until they see your order and complete it.');
       a.channel.send(emb11);
     }
   },
@@ -166,7 +166,7 @@ module.exports = [
       
       let emb12 = new Discord.RichEmbed()
         .setColor(color.blue)
-        .setDescrption('<@143160118090006530> or <@366536353418182657> have been alerted, feel free to contact them to claim or wait for one of them to DM you.');
+        .setDescription('<@143160118090006530> or <@366536353418182657> have been alerted, feel free to contact them to claim or wait for one of them to DM you.');
       a.channel.send(emb12);
     }
   },
