@@ -6,6 +6,7 @@ module.exports = {
 	usage: '<embed | tts> [text]',
 	cooldown: 0.5,
 	args: true,
+	ownerOnly: true,
 	guildOnly: true,
 	execute(message, args, bot, color) {
 		const perms = ["MANAGE_MESSAGES"]
