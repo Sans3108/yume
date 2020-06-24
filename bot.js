@@ -6,7 +6,7 @@ const { ownerID } = require("./config.json");
 const { prefix } = require("./prefix.json");
 const fs = require("fs");
 const db = require("quick.db");
-const _ = require('underscore-node');
+const _ = require('lodash');
 const f = require("./functions.js");
 
 const noLog = require("./excluded-channels.js");
